@@ -150,31 +150,7 @@ CREATE TABLE Injury (
     FOREIGN KEY (player_id) REFERENCES Player(player_id),
     FOREIGN KEY (season_id) REFERENCES Season(season_id)
 );
-
--- Draft
-CREATE TABLE Draft (
-    draft_id INT PRIMARY KEY,
-    draft_year YEAR,
-    num_rounds INT,
-    location VARCHAR(100),
-    season_id INT,
-    FOREIGN KEY (season_id) REFERENCES Season(season_id)
-);
-
--- DraftPick (Weak Entity)
-CREATE TABLE DraftPick (
-    pick_id INT PRIMARY KEY,
-    round_number INT,
-    pick_number INT,
-    draft_id INT,
-    team_id INT,
-    player_id INT,
-    FOREIGN KEY (draft_id) REFERENCES Draft(draft_id),
-    FOREIGN KEY (team_id) REFERENCES Team(team_id),
-    FOREIGN KEY (player_id) REFERENCES Player(player_id)
-);
-
--- Award
+--Award
 CREATE TABLE Award (
     award_id INT PRIMARY KEY,
     award_name VARCHAR(100),
