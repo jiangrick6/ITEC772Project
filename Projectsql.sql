@@ -1,11 +1,17 @@
-PRAGMA foreign_keys = ON;
+-- database: Projectdb.db
+PRAGMA foreign_keys;
+
+-- =========================
+-- Drop tables in reverse dependency order
+-- =========================
+;
 
 -- =========================
 -- Conference
 -- =========================
 CREATE TABLE Conference (
-    conference_id INT PRIMARY KEY,
-    conference_name VARCHAR(100)
+    conference_id INTEGER PRIMARY KEY,
+    conference_name TEXT NOT NULL
 );
 
 INSERT INTO Conference (conference_id, conference_name) VALUES
@@ -16,9 +22,9 @@ INSERT INTO Conference (conference_id, conference_name) VALUES
 -- Division
 -- =========================
 CREATE TABLE Division (
-    division_id INT PRIMARY KEY,
-    division_name VARCHAR(100),
-    conference_id INT,
+    division_id INTEGER PRIMARY KEY,
+    division_name TEXT NOT NULL,
+    conference_id INTEGER NOT NULL,
     FOREIGN KEY (conference_id) REFERENCES Conference(conference_id)
 );
 
@@ -36,24 +42,25 @@ INSERT INTO Division (division_id, division_name, conference_id) VALUES
 -- Stadium
 -- =========================
 CREATE TABLE Stadium (
-    stadium_id INT PRIMARY KEY,
-    stadium_name VARCHAR(100),
-    city VARCHAR(100),
-    state VARCHAR(50),
-    capacity INT,
-    surface_type VARCHAR(50)
+    stadium_id INTEGER PRIMARY KEY,
+    stadium_name TEXT NOT NULL,
+    city TEXT NOT NULL,
+    state TEXT NOT NULL,
+    capacity INTEGER,
+    surface_type TEXT
 );
 
+-- Note: duplicate stadium rows were removed.
 INSERT INTO Stadium (stadium_id, stadium_name, city, state, capacity, surface_type) VALUES
-(1, 'Highmark Stadium', 'Orchard Park', 'NY', 71608, 'Artificial Turf'),
-(2, 'Hard Rock Stadium', 'Miami Gardens', 'FL', 65326, 'Grass'),
-(3, 'Gillette Stadium', 'Foxborough', 'MA', 65878, 'Artificial Turf'),
-(4, 'MetLife Stadium', 'East Rutherford', 'NJ', 82500, 'Artificial Turf'),
-(5, 'M&T Bank Stadium', 'Baltimore', 'MD', 71008, 'Grass'),
-(6, 'Paycor Stadium', 'Cincinnati', 'OH', 65515, 'Artificial Turf'),
-(7, 'Huntington Bank Field', 'Cleveland', 'OH', 67431, 'Grass'),
-(8, 'Acrisure Stadium', 'Pittsburgh', 'PA', 68400, 'Grass'),
-(9, 'NRG Stadium', 'Houston', 'TX', 72220, 'Artificial Turf'),
+(1,  'Highmark Stadium', 'Orchard Park', 'NY', 71608, 'Artificial Turf'),
+(2,  'Hard Rock Stadium', 'Miami Gardens', 'FL', 65326, 'Grass'),
+(3,  'Gillette Stadium', 'Foxborough', 'MA', 65878, 'Artificial Turf'),
+(4,  'MetLife Stadium', 'East Rutherford', 'NJ', 82500, 'Artificial Turf'),
+(5,  'M&T Bank Stadium', 'Baltimore', 'MD', 71008, 'Grass'),
+(6,  'Paycor Stadium', 'Cincinnati', 'OH', 65515, 'Artificial Turf'),
+(7,  'Huntington Bank Field', 'Cleveland', 'OH', 67431, 'Grass'),
+(8,  'Acrisure Stadium', 'Pittsburgh', 'PA', 68400, 'Grass'),
+(9,  'NRG Stadium', 'Houston', 'TX', 72220, 'Artificial Turf'),
 (10, 'Lucas Oil Stadium', 'Indianapolis', 'IN', 67000, 'Artificial Turf'),
 (11, 'EverBank Stadium', 'Jacksonville', 'FL', 69132, 'Grass'),
 (12, 'Nissan Stadium', 'Nashville', 'TN', 69143, 'Grass'),
@@ -62,7 +69,6 @@ INSERT INTO Stadium (stadium_id, stadium_name, city, state, capacity, surface_ty
 (15, 'Allegiant Stadium', 'Las Vegas', 'NV', 65000, 'Artificial Turf'),
 (16, 'SoFi Stadium', 'Inglewood', 'CA', 70240, 'Artificial Turf'),
 (17, 'AT&T Stadium', 'Arlington', 'TX', 80000, 'Artificial Turf'),
-(18, 'MetLife Stadium', 'East Rutherford', 'NJ', 82500, 'Artificial Turf'),
 (19, 'Lincoln Financial Field', 'Philadelphia', 'PA', 69596, 'Grass'),
 (20, 'FedExField', 'Landover', 'MD', 62000, 'Grass'),
 (21, 'Soldier Field', 'Chicago', 'IL', 61500, 'Grass'),
@@ -74,7 +80,6 @@ INSERT INTO Stadium (stadium_id, stadium_name, city, state, capacity, surface_ty
 (27, 'Caesars Superdome', 'New Orleans', 'LA', 73208, 'Artificial Turf'),
 (28, 'Raymond James Stadium', 'Tampa', 'FL', 65890, 'Grass'),
 (29, 'State Farm Stadium', 'Glendale', 'AZ', 63400, 'Grass'),
-(30, 'SoFi Stadium', 'Inglewood', 'CA', 70240, 'Artificial Turf'),
 (31, 'Levi''s Stadium', 'Santa Clara', 'CA', 68500, 'Grass'),
 (32, 'Lumen Field', 'Seattle', 'WA', 68740, 'Artificial Turf');
 
@@ -82,27 +87,27 @@ INSERT INTO Stadium (stadium_id, stadium_name, city, state, capacity, surface_ty
 -- Team
 -- =========================
 CREATE TABLE Team (
-    team_id INT PRIMARY KEY,
-    team_name VARCHAR(100),
-    city VARCHAR(100),
-    abbreviation VARCHAR(10) UNIQUE,
-    founded_year YEAR,
-    division_id INT,
-    stadium_id INT,
+    team_id INTEGER PRIMARY KEY,
+    team_name TEXT NOT NULL,
+    city TEXT NOT NULL,
+    abbreviation TEXT NOT NULL UNIQUE,
+    founded_year INTEGER,
+    division_id INTEGER NOT NULL,
+    stadium_id INTEGER NOT NULL,
     FOREIGN KEY (division_id) REFERENCES Division(division_id),
     FOREIGN KEY (stadium_id) REFERENCES Stadium(stadium_id)
 );
 
 INSERT INTO Team (team_id, team_name, city, abbreviation, founded_year, division_id, stadium_id) VALUES
-(1, 'Bills', 'Buffalo', 'BUF', 1960, 1, 1),
-(2, 'Dolphins', 'Miami', 'MIA', 1966, 1, 2),
-(3, 'Patriots', 'New England', 'NE', 1960, 1, 3),
-(4, 'Jets', 'New York', 'NYJ', 1960, 1, 4),
-(5, 'Ravens', 'Baltimore', 'BAL', 1996, 2, 5),
-(6, 'Bengals', 'Cincinnati', 'CIN', 1968, 2, 6),
-(7, 'Browns', 'Cleveland', 'CLE', 1946, 2, 7),
-(8, 'Steelers', 'Pittsburgh', 'PIT', 1933, 2, 8),
-(9, 'Texans', 'Houston', 'HOU', 2002, 3, 9),
+(1,  'Bills', 'Buffalo', 'BUF', 1960, 1, 1),
+(2,  'Dolphins', 'Miami', 'MIA', 1966, 1, 2),
+(3,  'Patriots', 'New England', 'NE', 1960, 1, 3),
+(4,  'Jets', 'New York', 'NYJ', 1960, 1, 4),
+(5,  'Ravens', 'Baltimore', 'BAL', 1996, 2, 5),
+(6,  'Bengals', 'Cincinnati', 'CIN', 1968, 2, 6),
+(7,  'Browns', 'Cleveland', 'CLE', 1946, 2, 7),
+(8,  'Steelers', 'Pittsburgh', 'PIT', 1933, 2, 8),
+(9,  'Texans', 'Houston', 'HOU', 2002, 3, 9),
 (10, 'Colts', 'Indianapolis', 'IND', 1953, 3, 10),
 (11, 'Jaguars', 'Jacksonville', 'JAX', 1995, 3, 11),
 (12, 'Titans', 'Tennessee', 'TEN', 1960, 3, 12),
@@ -111,7 +116,7 @@ INSERT INTO Team (team_id, team_name, city, abbreviation, founded_year, division
 (15, 'Raiders', 'Las Vegas', 'LV', 1960, 4, 15),
 (16, 'Chargers', 'Los Angeles', 'LAC', 1960, 4, 16),
 (17, 'Cowboys', 'Dallas', 'DAL', 1960, 5, 17),
-(18, 'Giants', 'New York', 'NYG', 1925, 5, 18),
+(18, 'Giants', 'New York', 'NYG', 1925, 5, 4),
 (19, 'Eagles', 'Philadelphia', 'PHI', 1933, 5, 19),
 (20, 'Commanders', 'Washington', 'WAS', 1932, 5, 20),
 (21, 'Bears', 'Chicago', 'CHI', 1920, 6, 21),
@@ -123,7 +128,7 @@ INSERT INTO Team (team_id, team_name, city, abbreviation, founded_year, division
 (27, 'Saints', 'New Orleans', 'NO', 1967, 7, 27),
 (28, 'Buccaneers', 'Tampa Bay', 'TB', 1976, 7, 28),
 (29, 'Cardinals', 'Arizona', 'ARI', 1898, 8, 29),
-(30, 'Rams', 'Los Angeles', 'LAR', 1936, 8, 30),
+(30, 'Rams', 'Los Angeles', 'LAR', 1936, 8, 16),
 (31, '49ers', 'San Francisco', 'SF', 1946, 8, 31),
 (32, 'Seahawks', 'Seattle', 'SEA', 1976, 8, 32);
 
@@ -131,11 +136,11 @@ INSERT INTO Team (team_id, team_name, city, abbreviation, founded_year, division
 -- Season
 -- =========================
 CREATE TABLE Season (
-    season_id INT PRIMARY KEY,
-    season_year YEAR,
-    start_date DATE,
-    end_date DATE,
-    num_weeks INT
+    season_id INTEGER PRIMARY KEY,
+    season_year INTEGER NOT NULL,
+    start_date TEXT,
+    end_date TEXT,
+    num_weeks INTEGER
 );
 
 INSERT INTO Season (season_id, season_year, start_date, end_date, num_weeks) VALUES
@@ -145,13 +150,13 @@ INSERT INTO Season (season_id, season_year, start_date, end_date, num_weeks) VAL
 -- Game
 -- =========================
 CREATE TABLE Game (
-    game_id INT PRIMARY KEY,
-    game_date DATE,
-    week_number INT,
-    season_id INT,
-    stadium_id INT,
-    home_team_id INT,
-    away_team_id INT,
+    game_id INTEGER PRIMARY KEY,
+    game_date TEXT,
+    week_number INTEGER,
+    season_id INTEGER NOT NULL,
+    stadium_id INTEGER NOT NULL,
+    home_team_id INTEGER NOT NULL,
+    away_team_id INTEGER NOT NULL,
     FOREIGN KEY (season_id) REFERENCES Season(season_id),
     FOREIGN KEY (stadium_id) REFERENCES Stadium(stadium_id),
     FOREIGN KEY (home_team_id) REFERENCES Team(team_id),
@@ -162,12 +167,12 @@ CREATE TABLE Game (
 -- GameResult
 -- =========================
 CREATE TABLE GameResult (
-    result_id INT PRIMARY KEY,
-    home_score INT,
-    away_score INT,
-    overtime BOOLEAN,
-    attendance INT,
-    game_id INT UNIQUE,
+    result_id INTEGER PRIMARY KEY,
+    home_score INTEGER,
+    away_score INTEGER,
+    overtime INTEGER,
+    attendance INTEGER,
+    game_id INTEGER UNIQUE,
     FOREIGN KEY (game_id) REFERENCES Game(game_id)
 );
 
@@ -175,9 +180,9 @@ CREATE TABLE GameResult (
 -- Position
 -- =========================
 CREATE TABLE Position (
-    position_id INT PRIMARY KEY,
-    position_name VARCHAR(50),
-    position_group VARCHAR(50)
+    position_id INTEGER PRIMARY KEY,
+    position_name TEXT NOT NULL,
+    position_group TEXT NOT NULL
 );
 
 INSERT INTO Position (position_id, position_name, position_group) VALUES
@@ -222,16 +227,16 @@ INSERT INTO Position (position_id, position_name, position_group) VALUES
 -- Player
 -- =========================
 CREATE TABLE Player (
-    player_id INT PRIMARY KEY,
-    first_name VARCHAR(50),
-    last_name VARCHAR(50),
-    date_of_birth DATE,
-    height VARCHAR(10),
-    weight INT,
-    college VARCHAR(100),
-    jersey_number INT,
-    position_id INT,
-    current_team_abbreviation VARCHAR(10),
+    player_id INTEGER PRIMARY KEY,
+    first_name TEXT,
+    last_name TEXT,
+    date_of_birth TEXT,
+    height TEXT,
+    weight INTEGER,
+    college TEXT,
+    jersey_number INTEGER,
+    position_id INTEGER,
+    current_team_abbreviation TEXT,
     FOREIGN KEY (position_id) REFERENCES Position(position_id),
     FOREIGN KEY (current_team_abbreviation) REFERENCES Team(abbreviation)
 );
@@ -240,11 +245,11 @@ CREATE TABLE Player (
 -- Roster
 -- =========================
 CREATE TABLE Roster (
-    roster_id INT PRIMARY KEY,
-    status VARCHAR(50),
-    player_id INT,
-    team_id INT,
-    season_id INT,
+    roster_id INTEGER PRIMARY KEY,
+    status TEXT,
+    player_id INTEGER,
+    team_id INTEGER,
+    season_id INTEGER,
     FOREIGN KEY (player_id) REFERENCES Player(player_id),
     FOREIGN KEY (team_id) REFERENCES Team(team_id),
     FOREIGN KEY (season_id) REFERENCES Season(season_id)
@@ -254,11 +259,11 @@ CREATE TABLE Roster (
 -- Coach
 -- =========================
 CREATE TABLE Coach (
-    coach_id INT PRIMARY KEY,
-    first_name VARCHAR(50),
-    last_name VARCHAR(50),
-    date_of_birth DATE,
-    years_experience INT
+    coach_id INTEGER PRIMARY KEY,
+    first_name TEXT,
+    last_name TEXT,
+    date_of_birth TEXT,
+    years_experience INTEGER
 );
 
 INSERT INTO Coach (coach_id, first_name, last_name, date_of_birth, years_experience) VALUES
@@ -299,11 +304,11 @@ INSERT INTO Coach (coach_id, first_name, last_name, date_of_birth, years_experie
 -- CoachAssignment
 -- =========================
 CREATE TABLE CoachAssignment (
-    assignment_id INT PRIMARY KEY,
-    role VARCHAR(50),
-    coach_id INT,
-    team_id INT,
-    season_id INT,
+    assignment_id INTEGER PRIMARY KEY,
+    role TEXT,
+    coach_id INTEGER,
+    team_id INTEGER,
+    season_id INTEGER,
     FOREIGN KEY (coach_id) REFERENCES Coach(coach_id),
     FOREIGN KEY (team_id) REFERENCES Team(team_id),
     FOREIGN KEY (season_id) REFERENCES Season(season_id)
@@ -347,13 +352,13 @@ INSERT INTO CoachAssignment (assignment_id, role, coach_id, team_id, season_id) 
 -- Contract
 -- =========================
 CREATE TABLE Contract (
-    contract_id INT PRIMARY KEY,
-    start_date DATE,
-    end_date DATE,
-    total_value DECIMAL(15,2),
-    guaranteed_money DECIMAL(15,2),
-    player_id INT,
-    team_id INT,
+    contract_id INTEGER PRIMARY KEY,
+    start_date TEXT,
+    end_date TEXT,
+    total_value REAL,
+    guaranteed_money REAL,
+    player_id INTEGER,
+    team_id INTEGER,
     FOREIGN KEY (player_id) REFERENCES Player(player_id),
     FOREIGN KEY (team_id) REFERENCES Team(team_id)
 );
@@ -362,13 +367,13 @@ CREATE TABLE Contract (
 -- Injury
 -- =========================
 CREATE TABLE Injury (
-    injury_id INT PRIMARY KEY,
-    injury_type VARCHAR(100),
-    injury_date DATE,
-    return_date DATE,
-    games_missed INT,
-    player_id INT,
-    season_id INT,
+    injury_id INTEGER PRIMARY KEY,
+    injury_type TEXT,
+    injury_date TEXT,
+    return_date TEXT,
+    games_missed INTEGER,
+    player_id INTEGER,
+    season_id INTEGER,
     FOREIGN KEY (player_id) REFERENCES Player(player_id),
     FOREIGN KEY (season_id) REFERENCES Season(season_id)
 );
@@ -377,12 +382,12 @@ CREATE TABLE Injury (
 -- Award
 -- =========================
 CREATE TABLE Award (
-    award_id INT PRIMARY KEY,
-    award_name VARCHAR(100),
-    award_date DATE,
-    player_id INT,
-    season_id INT,
-    team_id INT,
+    award_id INTEGER PRIMARY KEY,
+    award_name TEXT,
+    award_date TEXT,
+    player_id INTEGER,
+    season_id INTEGER,
+    team_id INTEGER,
     FOREIGN KEY (player_id) REFERENCES Player(player_id),
     FOREIGN KEY (season_id) REFERENCES Season(season_id),
     FOREIGN KEY (team_id) REFERENCES Team(team_id)
