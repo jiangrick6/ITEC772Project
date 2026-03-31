@@ -1,0 +1,1070 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Mar 30, 2026 at 01:33 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.0.30
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `nfldatabase`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `conference`
+--
+
+CREATE TABLE `conference` (
+  `conference_id` int(11) NOT NULL,
+  `conference_name` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `conference`
+--
+
+INSERT INTO `conference` (`conference_id`, `conference_name`) VALUES
+(1, 'AFC'),
+(2, 'NFC');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `division`
+--
+
+CREATE TABLE `division` (
+  `division_id` int(11) NOT NULL,
+  `division_name` text NOT NULL,
+  `conference_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `division`
+--
+
+INSERT INTO `division` (`division_id`, `division_name`, `conference_id`) VALUES
+(1, 'AFC East', 1),
+(2, 'AFC North', 1),
+(3, 'AFC South', 1),
+(4, 'AFC West', 1),
+(5, 'NFC East', 2),
+(6, 'NFC North', 2),
+(7, 'NFC South', 2),
+(8, 'NFC West', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `player`
+--
+
+CREATE TABLE `player` (
+  `player_id` int(11) NOT NULL,
+  `first_name` text DEFAULT NULL,
+  `last_name` text DEFAULT NULL,
+  `date_of_birth` text DEFAULT NULL,
+  `height` text DEFAULT NULL,
+  `weight` int(11) DEFAULT NULL,
+  `college` text DEFAULT NULL,
+  `jersey_number` int(11) DEFAULT NULL,
+  `position_id` int(11) DEFAULT NULL,
+  `current_team_abbreviation` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `player`
+--
+
+INSERT INTO `player` (`player_id`, `first_name`, `last_name`, `date_of_birth`, `height`, `weight`, `college`, `jersey_number`, `position_id`, `current_team_abbreviation`) VALUES
+(1, 'Kyler', 'Murray', '1997-08-07', '5-10', 207, 'Oklahoma', 1, 1, 'ARI'),
+(2, 'Clayton', 'Tune', '1999-03-15', '6-3', 220, 'Houston', 4, 1, 'ARI'),
+(3, 'Desmond', 'Ridder', '1999-08-31', '6-3', 215, 'Cincinnati', 9, 1, 'ARI'),
+(4, 'James', 'Conner', '1995-05-05', '6-1', 233, 'Pittsburgh', 6, 2, 'ARI'),
+(5, 'Emari', 'Demercado', '1999-01-10', '5-9', 215, 'TCU', 31, 2, 'ARI'),
+(6, 'Michael', 'Carter', '1999-05-07', '5-8', 201, 'UNC', 22, 2, 'ARI'),
+(7, 'Trey', 'Benson', '2002-07-23', '6-1', 216, 'Florida State', 30, 2, 'ARI'),
+(8, 'Marvin', 'Harrison Jr', '2002-08-11', '6-4', 205, 'Ohio State', 18, 4, 'ARI'),
+(9, 'Michael', 'Wilson', '2000-02-12', '6-2', 213, 'Stanford', 14, 4, 'ARI'),
+(10, 'Greg', 'Dortch', '1998-05-29', '5-7', 175, 'Wake Forest', 4, 4, 'ARI'),
+(11, 'Zach', 'Pascal', '1994-12-18', '6-2', 214, 'Old Dominion', 3, 4, 'ARI'),
+(12, 'Chris', 'Moore', '1993-06-16', '6-1', 215, 'Cincinnati', 15, 4, 'ARI'),
+(13, 'Rondale', 'Moore', '2000-06-09', '5-7', 181, 'Purdue', 4, 4, 'ARI'),
+(14, 'Trey', 'McBride', '1999-11-22', '6-4', 246, 'Colorado State', 85, 5, 'ARI'),
+(15, 'Elijah', 'Higgins', '2000-10-29', '6-3', 235, 'Stanford', 88, 5, 'ARI'),
+(16, 'Tip', 'Reiman', '2001-05-10', '6-5', 270, 'Illinois', 87, 5, 'ARI'),
+(17, 'DJ', 'Humphries', '1993-12-24', '6-5', 307, 'Florida', 74, 6, 'ARI'),
+(18, 'Paris', 'Johnson Jr', '2001-07-03', '6-6', 310, 'Ohio State', 70, 6, 'ARI'),
+(19, 'Kelvin', 'Beachum', '1989-06-08', '6-3', 308, 'SMU', 68, 6, 'ARI'),
+(20, 'Will', 'Hernandez', '1995-09-02', '6-2', 332, 'UTEP', 76, 7, 'ARI'),
+(21, 'Hjalte', 'Froholdt', '1996-08-20', '6-5', 310, 'Arkansas', 72, 8, 'ARI'),
+(22, 'Elijah', 'Wilkinson', '1995-02-10', '6-6', 314, 'UMass', 73, 6, 'ARI'),
+(23, 'Jon', 'Gaines II', '1999-07-31', '6-4', 303, 'UCLA', 64, 7, 'ARI'),
+(24, 'Carter', 'ODonnell', '1998-05-29', '6-5', 305, 'Alberta', 75, 6, 'ARI'),
+(25, 'Dennis', 'Daley', '1996-08-07', '6-6', 325, 'South Carolina', 65, 6, 'ARI'),
+(26, 'Jonathan', 'Ledbetter', '1997-09-12', '6-4', 280, 'Georgia', 96, 17, 'ARI'),
+(27, 'Dante', 'Stills', '1999-12-10', '6-3', 286, 'West Virginia', 55, 18, 'ARI'),
+(28, 'LJ', 'Collier', '1995-09-12', '6-2', 291, 'TCU', 91, 17, 'ARI'),
+(29, 'Kevin', 'Strong', '1996-09-12', '6-4', 305, 'UTSA', 92, 18, 'ARI'),
+(30, 'Roy', 'Lopez', '1997-08-07', '6-2', 318, 'Arizona', 98, 18, 'ARI'),
+(31, 'Ben', 'Stille', '1997-02-05', '6-5', 295, 'Nebraska', 95, 17, 'ARI'),
+(32, 'Zaven', 'Collins', '1999-05-19', '6-4', 260, 'Tulsa', 23, 19, 'ARI'),
+(33, 'Kyzir', 'White', '1996-03-24', '6-2', 230, 'West Virginia', 7, 19, 'ARI'),
+(34, 'Krys', 'Barnes', '1998-04-26', '6-2', 229, 'UCLA', 51, 19, 'ARI'),
+(35, 'Owen', 'Pappoe', '2000-01-28', '6-0', 225, 'Auburn', 0, 19, 'ARI'),
+(36, 'Victor', 'Dimukeje', '1999-01-18', '6-2', 262, 'Duke', 52, 28, 'ARI'),
+(37, 'Jesse', 'Luketa', '1999-05-07', '6-3', 253, 'Penn State', 48, 22, 'ARI'),
+(38, 'BJ', 'Ojulari', '2002-04-05', '6-3', 248, 'LSU', 18, 28, 'ARI'),
+(39, 'Garrett', 'Williams', '2000-04-05', '5-11', 190, 'Syracuse', 21, 20, 'ARI'),
+(40, 'Sean', 'Murphy-Bunting', '1997-06-19', '6-0', 195, 'Central Michigan', 23, 20, 'ARI'),
+(41, 'Marco', 'Wilson', '1999-03-08', '5-11', 191, 'Florida', 20, 20, 'ARI'),
+(42, 'KeiTrel', 'Clark', '2001-04-06', '5-10', 181, 'Louisville', 13, 20, 'ARI'),
+(43, 'Starling', 'Thomas V', '2000-01-01', '5-10', 195, 'UAB', 24, 20, 'ARI'),
+(44, 'Kris', 'Boyd', '1996-09-02', '5-11', 201, 'Texas', 29, 20, 'ARI'),
+(45, 'Budda', 'Baker', '1996-01-10', '5-10', 195, 'Washington', 3, 21, 'ARI'),
+(46, 'Jalen', 'Thompson', '1998-07-18', '6-0', 190, 'Washington State', 34, 21, 'ARI'),
+(47, 'Joey', 'Blount', '1998-08-09', '6-1', 205, 'Virginia', 35, 21, 'ARI'),
+(48, 'Andre', 'Chachere', '1996-11-02', '6-0', 200, 'San Jose State', 42, 21, 'ARI'),
+(49, 'Matt', 'Prater', '1984-08-10', '5-10', 201, 'UCF', 5, 29, 'ARI'),
+(50, 'Blake', 'Gillikin', '1998-01-08', '6-2', 196, 'Penn State', 2, 30, 'ARI'),
+(51, 'Aaron', 'Brewer', '1990-07-05', '6-1', 232, 'San Diego State', 47, 31, 'ARI'),
+(52, 'Depth', 'Player1', '2000-01-01', '6-0', 200, 'N/A', 0, 20, 'ARI'),
+(53, 'Depth', 'Player2', '2000-01-01', '6-0', 200, 'N/A', 0, 20, 'ARI'),
+(54, 'Josh', 'Allen', '1996-05-21', '6-5', 237, 'Wyoming', 17, 1, 'BUF'),
+(55, 'Mitchell', 'Trubisky', '1994-08-20', '6-2', 220, 'UNC', 10, 1, 'BUF'),
+(56, 'James', 'Cook', '1999-09-25', '5-11', 190, 'Georgia', 4, 2, 'BUF'),
+(57, 'Ray', 'Davis', '1999-11-11', '5-8', 220, 'Kentucky', 22, 2, 'BUF'),
+(58, 'Ty', 'Johnson', '1997-08-17', '5-10', 210, 'Maryland', 26, 2, 'BUF'),
+(59, 'Reggie', 'Gilliam', '1997-08-20', '6-0', 244, 'Toledo', 41, 3, 'BUF'),
+(60, 'Khalil', 'Shakir', '2000-02-03', '6-0', 190, 'Boise State', 10, 4, 'BUF'),
+(61, 'Keon', 'Coleman', '2003-05-17', '6-4', 215, 'Florida State', 0, 4, 'BUF'),
+(62, 'Joshua', 'Palmer', '1999-09-22', '6-1', 210, 'Tennessee', 5, 4, 'BUF'),
+(63, 'Elijah', 'Moore', '2000-03-27', '5-10', 178, 'Ole Miss', 8, 4, 'BUF'),
+(64, 'Curtis', 'Samuel', '1996-08-11', '5-11', 195, 'Ohio State', 1, 4, 'BUF'),
+(65, 'Tyrell', 'Shavers', '1999-08-11', '6-6', 211, 'San Diego State', 19, 4, 'BUF'),
+(66, 'Dalton', 'Kincaid', '1999-10-18', '6-4', 240, 'Utah', 86, 5, 'BUF'),
+(67, 'Dawson', 'Knox', '1996-11-14', '6-4', 254, 'Ole Miss', 88, 5, 'BUF'),
+(68, 'Jackson', 'Hawes', '2000-01-10', '6-5', 260, 'Georgia Tech', 87, 5, 'BUF'),
+(69, 'Dion', 'Dawkins', '1994-04-26', '6-5', 320, 'Temple', 73, 6, 'BUF'),
+(70, 'David', 'Edwards', '1997-03-06', '6-6', 308, 'Wisconsin', 76, 7, 'BUF'),
+(71, 'Connor', 'McGovern', '1997-11-27', '6-5', 308, 'Penn State', 66, 8, 'BUF'),
+(72, 'OCyrus', 'Torrence', '2000-01-20', '6-5', 347, 'Florida', 70, 7, 'BUF'),
+(73, 'Spencer', 'Brown', '1998-02-28', '6-8', 311, 'Northern Iowa', 79, 6, 'BUF'),
+(74, 'Alec', 'Anderson', '1996-09-19', '6-6', 305, 'UCLA', 71, 7, 'BUF'),
+(75, 'Sedrick', 'Van Pran-Granger', '2001-06-10', '6-4', 310, 'Georgia', 63, 8, 'BUF'),
+(76, 'Chase', 'Lundt', '2000-05-10', '6-8', 305, 'UConn', 77, 6, 'BUF'),
+(77, 'Ryan', 'Van Demark', '1998-09-19', '6-6', 310, 'UConn', 74, 6, 'BUF'),
+(78, 'Greg', 'Rousseau', '2000-04-05', '6-6', 266, 'Miami', 50, 17, 'BUF'),
+(79, 'Joey', 'Bosa', '1995-07-11', '6-5', 280, 'Ohio State', 97, 17, 'BUF'),
+(80, 'AJ', 'Epenesa', '1998-09-15', '6-6', 260, 'Iowa', 57, 17, 'BUF'),
+(81, 'Javon', 'Solomon', '2000-01-01', '6-2', 245, 'Troy', 55, 28, 'BUF'),
+(82, 'Landon', 'Jackson', '2002-01-01', '6-6', 280, 'Arkansas', 90, 17, 'BUF'),
+(83, 'Ed', 'Oliver', '1997-12-12', '6-1', 287, 'Houston', 91, 18, 'BUF'),
+(84, 'DaQuan', 'Jones', '1991-12-27', '6-4', 320, 'Penn State', 92, 18, 'BUF'),
+(85, 'TJ', 'Sanders', '2001-01-01', '6-4', 300, 'South Carolina', 93, 18, 'BUF'),
+(86, 'Deone', 'Walker', '2003-01-01', '6-6', 340, 'Kentucky', 94, 18, 'BUF'),
+(87, 'DeWayne', 'Carter', '2001-01-01', '6-3', 300, 'Duke', 95, 18, 'BUF'),
+(88, 'Terrel', 'Bernard', '1999-01-01', '6-1', 224, 'Baylor', 43, 19, 'BUF'),
+(89, 'Matt', 'Milano', '1994-07-28', '6-0', 223, 'Boston College', 58, 19, 'BUF'),
+(90, 'Dorian', 'Williams', '2001-01-01', '6-1', 228, 'Tulane', 42, 19, 'BUF'),
+(91, 'Joe', 'Andreessen', '2000-01-01', '6-1', 230, 'Buffalo', 44, 19, 'BUF'),
+(92, 'Shaq', 'Thompson', '1994-04-21', '6-0', 230, 'Washington', 54, 19, 'BUF'),
+(93, 'Christian', 'Benford', '2000-09-21', '6-1', 205, 'Villanova', 47, 20, 'BUF'),
+(94, 'TreDavious', 'White', '1995-01-16', '5-11', 192, 'LSU', 27, 20, 'BUF'),
+(95, 'Dorian', 'Strong', '2001-01-01', '6-1', 185, 'Virginia Tech', 30, 20, 'BUF'),
+(96, 'JaMarcus', 'Ingram', '1997-10-21', '6-2', 200, 'Buffalo', 35, 20, 'BUF'),
+(97, 'Taron', 'Johnson', '1996-07-27', '5-11', 192, 'Weber State', 7, 20, 'BUF'),
+(98, 'Cam', 'Lewis', '1997-04-03', '5-9', 183, 'Buffalo', 39, 20, 'BUF'),
+(99, 'Brandon', 'Codrington', '1999-01-01', '5-9', 185, 'NC Central', 29, 20, 'BUF'),
+(100, 'Taylor', 'Rapp', '1997-12-22', '6-0', 208, 'Washington', 9, 21, 'BUF'),
+(101, 'Cole', 'Bishop', '2000-01-01', '6-2', 205, 'Utah', 31, 21, 'BUF'),
+(102, 'Damar', 'Hamlin', '1998-03-24', '6-0', 200, 'Pittsburgh', 3, 21, 'BUF'),
+(103, 'Jordan', 'Hancock', '2002-01-01', '6-1', 195, 'Ohio State', 37, 21, 'BUF'),
+(104, 'Tyler', 'Bass', '1997-02-14', '5-10', 183, 'Georgia Southern', 2, 29, 'BUF'),
+(105, 'Brad', 'Robbins', '1998-12-20', '6-1', 220, 'Michigan', 8, 30, 'BUF'),
+(106, 'Reid', 'Ferguson', '1994-03-24', '6-2', 240, 'LSU', 69, 31, 'BUF'),
+(107, 'Tua', 'Tagovailoa', '1998-03-02', '6-1', 217, 'Alabama', 1, 1, 'MIA'),
+(108, 'Zach', 'Wilson', '1999-08-03', '6-2', 214, 'BYU', 2, 1, 'MIA'),
+(109, 'Quinn', 'Ewers', '2003-03-15', '6-2', 206, 'Texas', 3, 1, 'MIA'),
+(110, 'Devon', 'Achane', '2001-10-13', '5-9', 188, 'Texas A&M', 28, 2, 'MIA'),
+(111, 'Jaylen', 'Wright', '2003-04-01', '5-11', 210, 'Tennessee', 25, 2, 'MIA'),
+(112, 'Ollie', 'Gordon II', '2003-01-15', '6-2', 215, 'Oklahoma State', 21, 2, 'MIA'),
+(113, 'Alec', 'Ingold', '1996-07-09', '6-1', 240, 'Wisconsin', 30, 3, 'MIA'),
+(114, 'Tyreek', 'Hill', '1994-03-01', '5-10', 191, 'West Alabama', 10, 4, 'MIA'),
+(115, 'Jaylen', 'Waddle', '1998-11-25', '5-10', 182, 'Alabama', 17, 4, 'MIA'),
+(116, 'Malik', 'Washington', '2000-03-10', '5-8', 190, 'Virginia', 83, 4, 'MIA'),
+(117, 'Nick', 'Westbrook-Ikhine', '1997-03-21', '6-2', 211, 'Indiana', 15, 4, 'MIA'),
+(118, 'Dee', 'Eskridge', '1997-03-23', '5-9', 190, 'Western Michigan', 2, 4, 'MIA'),
+(119, 'Tahj', 'Washington', '2001-06-19', '5-10', 175, 'USC', 12, 4, 'MIA'),
+(120, 'Darren', 'Waller', '1992-09-13', '6-6', 255, 'Georgia Tech', 84, 5, 'MIA'),
+(121, 'Julian', 'Hill', '2000-10-05', '6-4', 250, 'Campbell', 89, 5, 'MIA'),
+(122, 'Tanner', 'Conner', '1998-12-22', '6-3', 232, 'Idaho State', 80, 5, 'MIA'),
+(123, 'Patrick', 'Paul', '2002-01-06', '6-7', 315, 'Houston', 52, 6, 'MIA'),
+(124, 'Jonah', 'Savaiinaea', '2003-02-15', '6-5', 320, 'Arizona', 70, 7, 'MIA'),
+(125, 'Aaron', 'Brewer', '1997-07-09', '6-1', 295, 'Texas State', 61, 8, 'MIA'),
+(126, 'James', 'Daniels', '1997-09-13', '6-4', 327, 'Iowa', 68, 7, 'MIA'),
+(127, 'Austin', 'Jackson', '1999-08-03', '6-5', 322, 'USC', 73, 6, 'MIA'),
+(128, 'Larry', 'Borom', '1999-03-19', '6-5', 333, 'Missouri', 75, 6, 'MIA'),
+(129, 'Kion', 'Smith', '1997-03-06', '6-5', 300, 'Fayetteville State', 71, 6, 'MIA'),
+(130, 'Daniel', 'Brunskill', '1994-01-27', '6-5', 300, 'San Diego State', 64, 7, 'MIA'),
+(131, 'Zach', 'Sieler', '1995-09-01', '6-6', 290, 'Ferris State', 92, 18, 'MIA'),
+(132, 'Benito', 'Jones', '1997-11-19', '6-1', 320, 'Ole Miss', 95, 18, 'MIA'),
+(133, 'Matthew', 'Butler', '1999-06-02', '6-4', 300, 'Tennessee', 94, 18, 'MIA'),
+(134, 'Kenneth', 'Grant', '2003-10-14', '6-3', 339, 'Michigan', 98, 18, 'MIA'),
+(135, 'Jordan', 'Phillips', '1992-09-21', '6-6', 341, 'Oklahoma', 97, 18, 'MIA'),
+(136, 'Zeek', 'Biggers', '2001-02-20', '6-6', 320, 'Georgia Tech', 93, 18, 'MIA'),
+(137, 'Jaelan', 'Phillips', '1999-05-28', '6-5', 263, 'Miami', 15, 28, 'MIA'),
+(138, 'Bradley', 'Chubb', '1996-06-24', '6-4', 275, 'NC State', 2, 28, 'MIA'),
+(139, 'Chop', 'Robinson', '2003-01-02', '6-3', 250, 'Penn State', 44, 28, 'MIA'),
+(140, 'Matthew', 'Judon', '1992-08-15', '6-3', 261, 'Grand Valley State', 9, 28, 'MIA'),
+(141, 'Cameron', 'Goode', '1998-02-15', '6-3', 240, 'California', 53, 28, 'MIA'),
+(142, 'Jordyn', 'Brooks', '1997-10-21', '6-0', 240, 'Texas Tech', 56, 19, 'MIA'),
+(143, 'KJ', 'Britt', '1998-06-24', '6-0', 235, 'Auburn', 52, 19, 'MIA'),
+(144, 'Tyrel', 'Dodson', '1998-06-25', '6-0', 237, 'Texas A&M', 55, 19, 'MIA'),
+(145, 'Willie', 'Gay Jr', '1998-02-15', '6-1', 243, 'Mississippi State', 50, 19, 'MIA'),
+(146, 'Storm', 'Duck', '1999-12-15', '6-0', 195, 'Louisville', 21, 20, 'MIA'),
+(147, 'Jack', 'Jones', '1997-12-26', '5-11', 175, 'Arizona State', 25, 20, 'MIA'),
+(148, 'Cam', 'Smith', '2001-02-17', '6-1', 188, 'South Carolina', 24, 20, 'MIA'),
+(149, 'Isaiah', 'Johnson', '1996-11-19', '6-2', 210, 'Houston', 23, 20, 'MIA'),
+(150, 'Ethan', 'Bonner', '1999-11-06', '6-1', 190, 'Stanford', 26, 20, 'MIA'),
+(151, 'Jason', 'Marshall Jr', '2000-02-13', '6-1', 200, 'Florida', 27, 20, 'MIA'),
+(152, 'Minkah', 'Fitzpatrick', '1996-11-17', '6-1', 207, 'Alabama', 29, 21, 'MIA'),
+(153, 'Elijah', 'Campbell', '1995-11-10', '6-2', 205, 'Northern Iowa', 31, 21, 'MIA'),
+(154, 'Ifeatu', 'Melifonwu', '1999-05-02', '6-3', 213, 'Syracuse', 6, 21, 'MIA'),
+(155, 'Dante', 'Trader Jr', '2002-01-01', '6-0', 200, 'Maryland', 33, 21, 'MIA'),
+(156, 'Ashtyn', 'Davis', '1996-10-02', '6-1', 202, 'California', 32, 21, 'MIA'),
+(157, 'Jordan', 'Colbert', '2001-01-01', '6-1', 205, 'Rhode Island', 34, 21, 'MIA'),
+(158, 'Jake', 'Bailey', '1997-06-26', '6-2', 205, 'Stanford', 7, 30, 'MIA'),
+(159, 'Joe', 'Cardona', '1992-04-16', '6-3', 245, 'Navy', 49, 31, 'MIA'),
+(160, 'Drake', 'Maye', '2002-08-30', '6-4', 225, 'UNC', 10, 1, 'NE'),
+(161, 'Joshua', 'Dobbs', '1995-01-26', '6-3', 220, 'Tennessee', 15, 1, 'NE'),
+(162, 'Rhamondre', 'Stevenson', '1998-02-23', '6-0', 227, 'Oklahoma', 38, 2, 'NE'),
+(163, 'Antonio', 'Gibson', '1998-06-23', '6-0', 228, 'Memphis', 24, 2, 'NE'),
+(164, 'TreVeyon', 'Henderson', '2002-10-22', '5-10', 210, 'Ohio State', 32, 2, 'NE'),
+(165, 'Stefon', 'Diggs', '1993-11-29', '6-0', 191, 'Maryland', 1, 4, 'NE'),
+(166, 'Mack', 'Hollins', '1993-09-16', '6-4', 221, 'UNC', 13, 4, 'NE'),
+(167, 'DeMario', 'Douglas', '2000-12-08', '5-8', 179, 'Liberty', 81, 4, 'NE'),
+(168, 'Kayshon', 'Boutte', '2002-05-07', '6-0', 205, 'LSU', 9, 4, 'NE'),
+(169, 'Kyle', 'Williams', '2001-01-01', '6-1', 190, 'UNLV', 19, 4, 'NE'),
+(170, 'Efton', 'Chism III', '2001-01-01', '5-10', 185, 'Eastern Washington', 18, 4, 'NE'),
+(171, 'Javon', 'Baker', '2002-01-01', '6-2', 200, 'UCF', 6, 4, 'NE'),
+(172, 'Kendrick', 'Bourne', '1995-08-04', '6-1', 203, 'Eastern Washington', 84, 4, 'NE'),
+(173, 'Hunter', 'Henry', '1994-12-07', '6-5', 250, 'Arkansas', 85, 5, 'NE'),
+(174, 'Austin', 'Hooper', '1994-11-29', '6-4', 254, 'Stanford', 81, 5, 'NE'),
+(175, 'Jaheim', 'Bell', '2001-01-01', '6-3', 240, 'Florida State', 88, 5, 'NE'),
+(176, 'Trent', 'Brown', '1993-04-13', '6-8', 380, 'Florida', 77, 6, 'NE'),
+(177, 'Michael', 'Onwenu', '1997-12-10', '6-3', 350, 'Michigan', 71, 7, 'NE'),
+(178, 'David', 'Andrews', '1992-07-10', '6-3', 300, 'Georgia', 60, 8, 'NE'),
+(179, 'Cole', 'Strange', '1998-07-31', '6-5', 305, 'Chattanooga', 69, 7, 'NE'),
+(180, 'Sidy', 'Sow', '1998-08-17', '6-5', 323, 'Eastern Michigan', 62, 7, 'NE'),
+(181, 'Calvin', 'Anderson', '1996-01-07', '6-5', 305, 'Texas', 76, 6, 'NE'),
+(182, 'Conor', 'McDermott', '1992-12-16', '6-8', 305, 'UCLA', 64, 6, 'NE'),
+(183, 'Jake', 'Andrews', '1999-01-01', '6-3', 305, 'Troy', 67, 8, 'NE'),
+(184, 'Atonio', 'Mafi', '1999-10-20', '6-3', 335, 'UCLA', 68, 7, 'NE'),
+(185, 'Christian', 'Barmore', '1999-07-28', '6-5', 310, 'Alabama', 90, 18, 'NE'),
+(186, 'Davon', 'Godchaux', '1994-11-11', '6-3', 330, 'LSU', 92, 18, 'NE'),
+(187, 'Deatrich', 'Wise Jr', '1994-07-12', '6-5', 280, 'Arkansas', 91, 17, 'NE'),
+(188, 'Keion', 'White', '1999-01-10', '6-5', 285, 'Georgia Tech', 99, 17, 'NE'),
+(189, 'Sam', 'Roberts', '1998-06-03', '6-5', 295, 'Northwest Missouri St', 98, 18, 'NE'),
+(190, 'Matthew', 'Judon', '1992-08-15', '6-3', 261, 'Grand Valley State', 9, 28, 'NE'),
+(191, 'Josh', 'Uche', '1998-09-18', '6-1', 245, 'Michigan', 55, 28, 'NE'),
+(192, 'Anfernee', 'Jennings', '1997-05-01', '6-2', 255, 'Alabama', 33, 28, 'NE'),
+(193, 'Marte', 'Mapu', '2000-01-01', '6-3', 230, 'Sacramento State', 30, 22, 'NE'),
+(194, 'Jahlani', 'Tavai', '1996-09-10', '6-2', 250, 'Hawaii', 48, 19, 'NE'),
+(195, 'JaWhaun', 'Bentley', '1996-08-24', '6-2', 255, 'Purdue', 8, 19, 'NE'),
+(196, 'Mack', 'Wilson', '1998-02-14', '6-1', 233, 'Alabama', 30, 19, 'NE'),
+(197, 'Chris', 'Board', '1995-07-23', '6-2', 240, 'North Dakota State', 58, 19, 'NE'),
+(198, 'Joe', 'Giles-Harris', '1997-04-22', '6-2', 234, 'Duke', 53, 19, 'NE'),
+(199, 'Christian', 'Gonzalez', '2002-06-28', '6-2', 200, 'Oregon', 0, 20, 'NE'),
+(200, 'Jonathan', 'Jones', '1993-09-20', '5-10', 190, 'Auburn', 31, 20, 'NE'),
+(201, 'Marcus', 'Jones', '1998-10-15', '5-8', 188, 'Houston', 25, 20, 'NE'),
+(202, 'Alex', 'Austin', '2001-01-01', '6-1', 195, 'Oregon State', 28, 20, 'NE'),
+(203, 'Isaiah', 'Bolden', '1999-01-01', '6-2', 200, 'Jackson State', 7, 20, 'NE'),
+(204, 'Kyle', 'Dugger', '1996-03-22', '6-1', 217, 'Lenoir-Rhyne', 23, 21, 'NE'),
+(205, 'Jabrill', 'Peppers', '1995-10-04', '5-11', 213, 'Michigan', 5, 21, 'NE'),
+(206, 'Adrian', 'Phillips', '1992-09-28', '5-11', 210, 'Texas', 21, 21, 'NE'),
+(207, 'Jaylinn', 'Hawkins', '1997-12-25', '6-1', 208, 'California', 32, 21, 'NE'),
+(208, 'Joshuah', 'Bledsoe', '1998-12-15', '6-0', 204, 'Missouri', 24, 21, 'NE'),
+(209, 'Chad', 'Ryland', '1999-01-01', '6-0', 195, 'Maryland', 36, 29, 'NE'),
+(210, 'Bryce', 'Baringer', '1999-01-01', '6-2', 205, 'Michigan State', 17, 30, 'NE'),
+(211, 'Joe', 'Cardona', '1992-04-16', '6-3', 245, 'Navy', 49, 31, 'NE'),
+(212, 'Brenden', 'Schooler', '1997-05-11', '6-2', 200, 'Texas', 41, 32, 'NE'),
+(266, 'Justin', 'Fields', '1999-03-05', '6-3', 227, 'Ohio State', 7, 1, 'NYJ'),
+(267, 'Tyrod', 'Taylor', '1989-08-03', '6-1', 217, 'Virginia Tech', 2, 1, 'NYJ'),
+(268, 'Braelon', 'Allen', '2004-01-20', '6-1', 235, 'Wisconsin', 0, 2, 'NYJ'),
+(269, 'Isaiah', 'Davis', '2001-02-15', '6-1', 220, 'South Dakota State', 32, 2, 'NYJ'),
+(270, 'Breece', 'Hall', '2001-05-31', '5-11', 217, 'Iowa State', 20, 2, 'NYJ'),
+(271, 'Kene', 'Nwangwu', '1998-02-09', '6-1', 210, 'Iowa State', 34, 2, 'NYJ'),
+(272, 'Andrew', 'Beck', '1996-05-10', '6-3', 255, 'Texas', 47, 3, 'NYJ'),
+(273, 'Xavier', 'Gipson', '2001-03-08', '5-9', 189, 'Stephen F Austin', 82, 4, 'NYJ'),
+(274, 'Garrett', 'Wilson', '2000-07-22', '6-0', 183, 'Ohio State', 5, 4, 'NYJ'),
+(275, 'Allen', 'Lazard', '1995-12-11', '6-5', 227, 'Iowa State', 10, 4, 'NYJ'),
+(276, 'Josh', 'Reynolds', '1995-02-16', '6-3', 192, 'Texas A&M', 83, 4, 'NYJ'),
+(277, 'Arian', 'Smith', '2001-10-11', '6-0', 179, 'Georgia', 82, 4, 'NYJ'),
+(278, 'Malachi', 'Corley', '2002-03-20', '5-11', 210, 'Western Kentucky', 17, 4, 'NYJ'),
+(279, 'Jeremy', 'Ruckert', '2000-08-12', '6-5', 250, 'Ohio State', 89, 5, 'NYJ'),
+(280, 'Stone', 'Smartt', '1998-07-17', '6-4', 226, 'Tulane', 84, 5, 'NYJ'),
+(281, 'Jelani', 'Woods', '1998-10-09', '6-7', 253, 'Virginia', 86, 5, 'NYJ'),
+(282, 'Olu', 'Fashanu', '2002-12-11', '6-6', 312, 'Penn State', 74, 6, 'NYJ'),
+(283, 'Max', 'Mitchell', '1999-05-24', '6-6', 307, 'Louisiana', 61, 6, 'NYJ'),
+(284, 'Armand', 'Membou', '2003-03-08', '6-4', 332, 'Missouri', 70, 6, 'NYJ'),
+(285, 'Chukwuma', 'Okorafor', '1997-08-08', '6-6', 320, 'Western Michigan', 76, 6, 'NYJ'),
+(286, 'Alijah', 'Vera-Tucker', '1999-06-17', '6-4', 315, 'USC', 75, 7, 'NYJ'),
+(287, 'Joe', 'Tippmann', '2001-03-24', '6-6', 317, 'Wisconsin', 66, 8, 'NYJ'),
+(288, 'John', 'Simpson', '1997-08-14', '6-4', 330, 'Clemson', 76, 7, 'NYJ'),
+(289, 'Wes', 'Schweitzer', '1993-09-11', '6-4', 300, 'San Jose State', 71, 7, 'NYJ'),
+(290, 'Carter', 'Warren', '1999-05-25', '6-5', 311, 'Pittsburgh', 67, 6, 'NYJ'),
+(291, 'Billy', 'Turner', '1991-10-17', '6-5', 315, 'North Dakota State', 77, 6, 'NYJ'),
+(292, 'Quinnen', 'Williams', '1997-12-21', '6-3', 303, 'Alabama', 95, 18, 'NYJ'),
+(293, 'Solomon', 'Thomas', '1995-08-26', '6-3', 280, 'Stanford', 94, 17, 'NYJ'),
+(294, 'Al', 'Woods', '1987-03-25', '6-4', 330, 'LSU', 96, 18, 'NYJ'),
+(295, 'Javon', 'Kinlaw', '1997-10-03', '6-5', 319, 'South Carolina', 90, 18, 'NYJ'),
+(296, 'Jermaine', 'Johnson', '1999-01-20', '6-5', 262, 'Florida State', 11, 28, 'NYJ'),
+(297, 'Will', 'McDonald IV', '1999-06-04', '6-4', 236, 'Iowa State', 99, 28, 'NYJ'),
+(298, 'Micheal', 'Clemons', '1997-08-21', '6-5', 263, 'Texas A&M', 72, 28, 'NYJ'),
+(299, 'Leonard', 'Taylor III', '2001-05-23', '6-3', 305, 'Miami', 91, 18, 'NYJ'),
+(300, 'Bruce', 'Hector', '1994-09-13', '6-2', 296, 'South Florida', 93, 18, 'NYJ'),
+(301, 'Tanzel', 'Smart', '1994-11-06', '6-1', 295, 'Tulane', 92, 18, 'NYJ'),
+(302, 'CJ', 'Mosley', '1992-06-19', '6-2', 231, 'Alabama', 57, 19, 'NYJ'),
+(303, 'Quincy', 'Williams', '1996-08-28', '5-11', 225, 'Murray State', 56, 19, 'NYJ'),
+(304, 'Jamien', 'Sherwood', '2000-01-20', '6-2', 216, 'Auburn', 44, 19, 'NYJ'),
+(305, 'Chazz', 'Surratt', '1997-02-16', '6-2', 233, 'UNC', 55, 19, 'NYJ'),
+(306, 'Zaire', 'Barnes', '2000-01-20', '6-1', 230, 'Western Michigan', 53, 19, 'NYJ'),
+(307, 'Sauce', 'Gardner', '2000-08-31', '6-3', 190, 'Cincinnati', 1, 20, 'NYJ'),
+(308, 'DJ', 'Reed', '1996-11-11', '5-9', 188, 'Kansas State', 4, 20, 'NYJ'),
+(309, 'Michael', 'Carter II', '1999-03-08', '5-10', 184, 'Duke', 30, 20, 'NYJ'),
+(310, 'Brandin', 'Echols', '1997-10-16', '5-10', 180, 'Kentucky', 26, 20, 'NYJ'),
+(311, 'Israel', 'Abanikanda', '2002-10-05', '5-10', 216, 'Pittsburgh', 25, 20, 'NYJ'),
+(312, 'Jordan', 'Whitehead', '1997-03-18', '5-10', 198, 'Pittsburgh', 3, 21, 'NYJ'),
+(313, 'Chuck', 'Clark', '1995-04-19', '6-0', 205, 'Virginia Tech', 36, 21, 'NYJ'),
+(314, 'Tony', 'Adams', '1999-01-23', '6-0', 203, 'Illinois', 22, 21, 'NYJ'),
+(315, 'Ashtyn', 'Davis', '1996-10-02', '6-1', 202, 'California', 21, 21, 'NYJ'),
+(316, 'Greg', 'Zuerlein', '1987-12-27', '6-0', 191, 'Missouri Western', 9, 29, 'NYJ'),
+(317, 'Thomas', 'Morstead', '1986-03-08', '6-4', 225, 'SMU', 6, 30, 'NYJ'),
+(318, 'Thomas', 'Hennessy', '1994-06-11', '6-2', 246, 'Duke', 42, 31, 'NYJ'),
+(319, 'Lamar', 'Jackson', '1997-01-07', '6-2', 212, 'Louisville', 8, 1, 'BAL'),
+(320, 'Josh', 'Johnson', '1986-05-15', '6-3', 219, 'San Diego', 17, 1, 'BAL'),
+(321, 'Derrick', 'Henry', '1994-01-04', '6-3', 247, 'Alabama', 22, 2, 'BAL'),
+(322, 'Justice', 'Hill', '1997-11-14', '5-10', 200, 'Oklahoma State', 43, 2, 'BAL'),
+(323, 'Keaton', 'Mitchell', '2002-01-11', '5-8', 191, 'East Carolina', 34, 2, 'BAL'),
+(324, 'Patrick', 'Ricard', '1994-05-09', '6-3', 305, 'Maine', 42, 3, 'BAL'),
+(325, 'Zay', 'Flowers', '2000-09-11', '5-9', 182, 'Boston College', 4, 4, 'BAL'),
+(326, 'Rashod', 'Bateman', '1999-11-29', '6-1', 197, 'Minnesota', 7, 4, 'BAL'),
+(327, 'Nelson', 'Agholor', '1993-05-24', '6-0', 198, 'USC', 15, 4, 'BAL'),
+(328, 'Devin', 'Duvernay', '1997-09-12', '5-11', 200, 'Texas', 13, 4, 'BAL'),
+(329, 'Tylan', 'Wallace', '1999-05-10', '5-11', 193, 'Oklahoma State', 16, 4, 'BAL'),
+(330, 'Mark', 'Andrews', '1995-09-06', '6-5', 256, 'Oklahoma', 89, 5, 'BAL'),
+(331, 'Isaiah', 'Likely', '2000-04-18', '6-4', 245, 'Coastal Carolina', 80, 5, 'BAL'),
+(332, 'Charlie', 'Kolar', '1999-02-19', '6-6', 252, 'Iowa State', 88, 5, 'BAL'),
+(333, 'Ronnie', 'Stanley', '1994-03-18', '6-6', 310, 'Notre Dame', 79, 6, 'BAL'),
+(334, 'Morgan', 'Moses', '1991-03-03', '6-6', 320, 'Virginia', 78, 6, 'BAL'),
+(335, 'Tyler', 'Linderbaum', '2000-04-07', '6-2', 296, 'Iowa', 64, 8, 'BAL'),
+(336, 'Kevin', 'Zeitler', '1990-03-08', '6-4', 315, 'Wisconsin', 70, 7, 'BAL'),
+(337, 'John', 'Simpson', '1997-08-14', '6-4', 330, 'Clemson', 76, 7, 'BAL'),
+(338, 'Daniel', 'Faalele', '1999-11-21', '6-8', 380, 'Minnesota', 77, 6, 'BAL'),
+(339, 'Patrick', 'Mekari', '1997-08-29', '6-4', 305, 'California', 65, 7, 'BAL'),
+(340, 'Ben', 'Cleveland', '1998-08-25', '6-6', 360, 'Georgia', 66, 7, 'BAL'),
+(341, 'Andrew', 'Vorhees', '1999-06-01', '6-6', 310, 'USC', 72, 7, 'BAL'),
+(342, 'Justin', 'Madubuike', '1997-11-17', '6-3', 305, 'Texas A&M', 92, 18, 'BAL'),
+(343, 'Michael', 'Pierce', '1992-11-06', '6-0', 355, 'Samford', 97, 18, 'BAL'),
+(344, 'Travis', 'Jones', '1999-08-05', '6-4', 338, 'Connecticut', 98, 18, 'BAL'),
+(345, 'Broderick', 'Washington', '1997-03-22', '6-2', 305, 'Texas Tech', 96, 18, 'BAL'),
+(346, 'Brent', 'Urban', '1991-05-05', '6-7', 300, 'Virginia', 94, 17, 'BAL'),
+(347, 'Odafe', 'Oweh', '1998-12-15', '6-5', 255, 'Penn State', 99, 28, 'BAL'),
+(348, 'Kyle', 'Van Noy', '1991-03-26', '6-3', 250, 'BYU', 50, 28, 'BAL'),
+(349, 'David', 'Ojabo', '2000-11-17', '6-5', 250, 'Michigan', 90, 28, 'BAL'),
+(350, 'Jadeveon', 'Clowney', '1993-02-14', '6-5', 255, 'South Carolina', 24, 28, 'BAL'),
+(351, 'Tavius', 'Robinson', '1999-01-17', '6-6', 259, 'Ole Miss', 95, 28, 'BAL'),
+(352, 'Roquan', 'Smith', '1997-04-08', '6-1', 232, 'Georgia', 0, 19, 'BAL'),
+(353, 'Patrick', 'Queen', '1999-08-13', '6-0', 232, 'LSU', 6, 19, 'BAL'),
+(354, 'Malik', 'Harrison', '1998-03-05', '6-3', 247, 'Ohio State', 40, 19, 'BAL'),
+(355, 'Trenton', 'Simpson', '2001-08-14', '6-2', 235, 'Clemson', 23, 19, 'BAL'),
+(356, 'Marlon', 'Humphrey', '1996-07-08', '6-0', 197, 'Alabama', 44, 20, 'BAL'),
+(357, 'Brandon', 'Stephens', '1997-12-29', '6-1', 215, 'SMU', 21, 20, 'BAL'),
+(358, 'Arthur', 'Maulet', '1993-06-01', '5-10', 190, 'Memphis', 10, 20, 'BAL'),
+(359, 'Rock', 'Ya-Sin', '1996-05-18', '6-0', 190, 'Temple', 23, 20, 'BAL'),
+(360, 'Jalyn', 'Armour-Davis', '1999-04-05', '6-1', 197, 'Alabama', 5, 20, 'BAL'),
+(361, 'Kyle', 'Hamilton', '2001-03-16', '6-4', 220, 'Notre Dame', 14, 21, 'BAL'),
+(362, 'Marcus', 'Williams', '1996-09-08', '6-1', 204, 'Utah', 32, 21, 'BAL'),
+(363, 'Geno', 'Stone', '1999-04-20', '5-11', 209, 'Iowa', 26, 21, 'BAL'),
+(364, 'Justin', 'Tucker', '1989-11-21', '6-1', 183, 'Texas', 9, 29, 'BAL'),
+(365, 'Jordan', 'Stout', '1998-08-09', '6-3', 210, 'Penn State', 11, 30, 'BAL'),
+(366, 'Nick', 'Moore', '1992-06-06', '6-1', 250, 'Georgia', 46, 31, 'BAL'),
+(367, 'Joe', 'Burrow', '2000-01-01', '6-4', 215, 'LSU', 9, 1, 'CIN'),
+(368, 'Jake', 'Browning', '2000-01-01', '6-2', 209, 'Washington', 0, 1, 'CIN'),
+(369, 'Chase', 'Brown', '2000-01-01', '5-10', 210, 'Illinois', 0, 2, 'CIN'),
+(370, 'Samaje', 'Perine', '2000-01-01', '5-11', 240, 'Oklahoma', 0, 2, 'CIN'),
+(371, 'Tahj', 'Brooks', '2000-01-01', '5-9', 220, 'Texas Tech', 0, 2, 'CIN'),
+(372, 'Ja\'Marr', 'Chase', '2000-01-01', '6-0', 205, 'LSU', 1, 4, 'CIN'),
+(373, 'Tee', 'Higgins', '2000-01-01', '6-4', 220, 'Clemson', 5, 4, 'CIN'),
+(374, 'Charlie', 'Jones', '2000-01-01', '6-0', 190, 'Purdue', 15, 4, 'CIN'),
+(375, 'Andrei', 'Iosivas', '2000-01-01', '6-3', 210, 'Princeton', 80, 4, 'CIN'),
+(376, 'Jermaine', 'Burton', '2000-01-01', '6-0', 194, 'Alabama', 0, 4, 'CIN'),
+(377, 'Mitchell', 'Tinsley', '2000-01-01', '6-1', 205, 'Penn State', 0, 4, 'CIN'),
+(378, 'Cam', 'Grandy', '2000-01-01', '6-5', 253, 'Illinois State', 0, 5, 'CIN'),
+(379, 'Noah', 'Fant', '2000-01-01', '6-4', 249, 'Iowa', 0, 5, 'CIN'),
+(380, 'Tanner', 'Hudson', '2000-01-01', '6-5', 241, 'Southern Arkansas', 0, 5, 'CIN'),
+(381, 'Mike', 'Gesicki', '2000-01-01', '6-6', 245, 'Penn State', 88, 5, 'CIN'),
+(382, 'Drew', 'Sample', '2000-01-01', '6-5', 260, 'Washington', 89, 5, 'CIN'),
+(383, 'Orlando', 'Brown Jr.', '2000-01-01', '6-8', 345, 'Oklahoma', 75, 6, 'CIN'),
+(384, 'Amarius', 'Mims', '2000-01-01', '6-8', 350, 'Georgia', 71, 6, 'CIN'),
+(385, 'Jalen', 'Rivers', '2000-01-01', '6-6', 320, 'Miami', 0, 6, 'CIN'),
+(386, 'Cody', 'Ford', '2000-01-01', '6-3', 345, 'Oklahoma', 61, 7, 'CIN'),
+(387, 'Lucas', 'Patrick', '2000-01-01', '6-3', 313, 'Duke', 63, 7, 'CIN'),
+(388, 'Dylan', 'Fairchild', '2000-01-01', '6-5', 318, 'Georgia', 0, 7, 'CIN'),
+(389, 'Ted', 'Karras', '2000-01-01', '6-4', 310, 'Illinois', 64, 8, 'CIN'),
+(390, 'Matt', 'Lee', '2000-01-01', '6-4', 310, 'Miami', 65, 8, 'CIN'),
+(391, 'Trey', 'Hendrickson', '2000-01-01', '6-4', 265, 'Florida Atlantic', 91, 17, 'CIN'),
+(392, 'Joseph', 'Ossai', '2000-01-01', '6-3', 253, 'Texas', 58, 17, 'CIN'),
+(393, 'Cam', 'Sample', '2000-01-01', '6-3', 280, 'Tulane', 96, 17, 'CIN'),
+(394, 'Shemar', 'Stewart', '2000-01-01', '6-5', 267, 'Texas A&M', 97, 17, 'CIN'),
+(395, 'Myles', 'Murphy', '2000-01-01', '6-5', 275, 'Clemson', 99, 17, 'CIN'),
+(396, 'B.J.', 'Hill', '2000-01-01', '6-3', 311, 'NC State', 92, 18, 'CIN'),
+(397, 'Kris', 'Jenkins Jr.', '2000-01-01', '6-3', 310, 'Michigan', 90, 18, 'CIN'),
+(398, 'McKinnley', 'Jackson', '2000-01-01', '6-2', 330, 'Texas A&M', 93, 18, 'CIN'),
+(399, 'Eric', 'Gregory', '2000-01-01', '6-4', 310, 'Arkansas', 0, 18, 'CIN'),
+(400, 'Howard', 'Cross III', '2000-01-01', '6-1', 285, 'Notre Dame', 95, 18, 'CIN'),
+(401, 'T.J.', 'Slaton Jr.', '2000-01-01', '6-5', 340, 'Florida', 98, 18, 'CIN'),
+(402, 'Oren', 'Burks', '2000-01-01', '6-3', 233, 'Vanderbilt', 42, 19, 'CIN'),
+(403, 'Demetrius', 'Knight Jr.', '2000-01-01', '6-2', 240, 'South Carolina', 44, 19, 'CIN'),
+(404, 'Barrett', 'Carter', '2000-01-01', '6-0', 231, 'Clemson', 49, 19, 'CIN'),
+(405, 'Shaka', 'Heyward', '2000-01-01', '6-3', 238, 'Duke', 50, 19, 'CIN'),
+(406, 'Logan', 'Wilson', '2000-01-01', '6-2', 245, 'Wyoming', 55, 19, 'CIN'),
+(407, 'DJ', 'Turner II', '2000-01-01', '5-11', 185, 'Michigan', 20, 20, 'CIN'),
+(408, 'Dax', 'Hill', '2000-01-01', '6-0', 195, 'Michigan', 23, 20, 'CIN'),
+(409, 'Marco', 'Wilson', '2000-01-01', '6-0', 190, 'Florida', 25, 20, 'CIN'),
+(410, 'Cam', 'Taylor-Britt', '2000-01-01', '5-11', 205, 'Nebraska', 0, 20, 'CIN'),
+(411, 'DJ', 'Ivey', '2000-01-01', '6-1', 192, 'Miami', 0, 20, 'CIN'),
+(412, 'Josh', 'Newton', '2000-01-01', '5-11', 190, 'TCU', 28, 20, 'CIN'),
+(413, 'Geno', 'Stone', '2000-01-01', '5-11', 211, 'Iowa', 22, 21, 'CIN'),
+(414, 'Jordan', 'Battle', '2000-01-01', '6-1', 215, 'Alabama', 27, 21, 'CIN'),
+(415, 'Tycen', 'Anderson', '2000-01-01', '6-2', 209, 'Toledo', 32, 21, 'CIN'),
+(416, 'PJ', 'Jules', '2000-01-01', '6-0', 203, 'Southern Illinois', 37, 21, 'CIN'),
+(417, 'William', 'Wagner', '2000-01-01', '6-2', 240, 'Michigan', 46, 31, 'CIN'),
+(418, 'Evan', 'McPherson', '2000-01-01', '5-11', 185, 'Florida', 2, 29, 'CIN'),
+(419, 'Ryan', 'Rehkow', '2000-01-01', '6-4', 235, 'BYU', 8, 30, 'CIN'),
+(420, 'Deshaun', 'Watson', '1995-09-14', '6-2', 215, 'Clemson', 4, 1, 'CLE'),
+(421, 'Dorian', 'Thompson-Robinson', '1999-11-14', '6-2', 203, 'UCLA', 17, 1, 'CLE'),
+(422, 'Nick', 'Chubb', '1995-12-27', '5-11', 227, 'Georgia', 24, 2, 'CLE'),
+(423, 'Jerome', 'Ford', '1999-09-12', '5-10', 210, 'Cincinnati', 34, 2, 'CLE'),
+(424, 'Nyheim', 'Hines', '1996-11-12', '5-9', 198, 'NC State', 21, 2, 'CLE'),
+(425, 'Pierre', 'Strong Jr', '1998-12-10', '5-11', 207, 'South Dakota State', 20, 2, 'CLE'),
+(426, 'Amari', 'Cooper', '1994-06-17', '6-1', 210, 'Alabama', 2, 4, 'CLE'),
+(427, 'Jerry', 'Jeudy', '1999-04-24', '6-1', 193, 'Alabama', 3, 4, 'CLE'),
+(428, 'Elijah', 'Moore', '2000-03-27', '5-10', 178, 'Ole Miss', 8, 4, 'CLE'),
+(429, 'Cedric', 'Tillman', '2000-04-19', '6-3', 215, 'Tennessee', 19, 4, 'CLE'),
+(430, 'David', 'Bell', '2000-12-14', '6-1', 212, 'Purdue', 18, 4, 'CLE'),
+(431, 'Jamari', 'Thrash', '2001-01-01', '6-0', 190, 'Louisville', 16, 4, 'CLE'),
+(432, 'David', 'Njoku', '1996-07-10', '6-4', 246, 'Miami', 85, 5, 'CLE'),
+(433, 'Jordan', 'Akins', '1992-04-19', '6-3', 243, 'UCF', 88, 5, 'CLE'),
+(434, 'Harrison', 'Bryant', '1998-04-23', '6-5', 230, 'FAU', 84, 5, 'CLE'),
+(435, 'Jedrick', 'Wills Jr', '1999-05-17', '6-4', 307, 'Alabama', 71, 6, 'CLE'),
+(436, 'Jack', 'Conklin', '1994-08-17', '6-6', 310, 'Michigan State', 78, 6, 'CLE'),
+(437, 'Wyatt', 'Teller', '1994-11-21', '6-4', 315, 'Virginia Tech', 77, 7, 'CLE'),
+(438, 'Joel', 'Bitonio', '1991-10-11', '6-4', 320, 'Nevada', 75, 7, 'CLE'),
+(439, 'Ethan', 'Pocic', '1995-08-05', '6-6', 310, 'LSU', 55, 8, 'CLE'),
+(440, 'Dawand', 'Jones', '2001-08-06', '6-8', 375, 'Ohio State', 79, 6, 'CLE'),
+(441, 'James', 'Hudson', '1999-05-13', '6-5', 313, 'Cincinnati', 72, 6, 'CLE'),
+(442, 'Luke', 'Wypler', '2001-01-01', '6-3', 300, 'Ohio State', 61, 8, 'CLE'),
+(443, 'Michael', 'Dunn', '1994-12-02', '6-5', 315, 'Maryland', 68, 7, 'CLE'),
+(444, 'Myles', 'Garrett', '1995-12-29', '6-4', 272, 'Texas A&M', 95, 17, 'CLE'),
+(445, 'ZaDarius', 'Smith', '1992-09-08', '6-4', 270, 'Kentucky', 99, 17, 'CLE'),
+(446, 'Ogbo', 'Okoronkwo', '1995-04-23', '6-2', 250, 'Oklahoma', 54, 28, 'CLE'),
+(447, 'Alex', 'Wright', '2000-01-01', '6-5', 271, 'UAB', 94, 17, 'CLE'),
+(448, 'Dalvin', 'Tomlinson', '1994-02-28', '6-3', 325, 'Alabama', 94, 18, 'CLE'),
+(449, 'Shelby', 'Harris', '1991-08-11', '6-2', 290, 'Illinois State', 93, 18, 'CLE'),
+(450, 'Siaki', 'Ika', '2000-01-01', '6-4', 358, 'Baylor', 62, 18, 'CLE'),
+(451, 'Maurice', 'Hurst', '1995-05-09', '6-2', 290, 'Michigan', 65, 18, 'CLE'),
+(452, 'Quinton', 'Jefferson', '1993-03-31', '6-4', 291, 'Maryland', 70, 18, 'CLE'),
+(453, 'Jeremiah', 'Owusu-Koramoah', '1999-11-04', '6-1', 221, 'Notre Dame', 6, 19, 'CLE'),
+(454, 'Jordan', 'Hicks', '1992-06-27', '6-1', 236, 'Texas', 58, 19, 'CLE'),
+(455, 'Anthony', 'Walker Jr', '1995-08-28', '6-1', 238, 'Northwestern', 5, 19, 'CLE'),
+(456, 'Mohamoud', 'Diabate', '2001-01-01', '6-3', 225, 'Utah', 43, 19, 'CLE'),
+(457, 'Tony', 'Fields II', '1999-06-01', '6-1', 222, 'West Virginia', 53, 19, 'CLE'),
+(458, 'Denzel', 'Ward', '1997-04-28', '5-11', 190, 'Ohio State', 21, 20, 'CLE'),
+(459, 'Greg', 'Newsome II', '2000-05-18', '6-0', 192, 'Northwestern', 0, 20, 'CLE'),
+(460, 'Martin', 'Emerson Jr', '2000-09-27', '6-2', 201, 'Mississippi State', 23, 20, 'CLE'),
+(461, 'Cameron', 'Mitchell', '2000-01-01', '6-0', 190, 'Northwestern', 39, 20, 'CLE'),
+(462, 'Mike', 'Ford Jr', '1995-09-04', '5-11', 200, 'SE Missouri State', 28, 20, 'CLE'),
+(463, 'Grant', 'Delpit', '1998-09-05', '6-3', 213, 'LSU', 22, 21, 'CLE'),
+(464, 'Juan', 'Thornhill', '1995-10-19', '6-0', 205, 'Virginia', 1, 21, 'CLE'),
+(465, 'Rodney', 'McLeod', '1990-06-23', '5-10', 195, 'Virginia', 23, 21, 'CLE'),
+(466, 'Dustin', 'Hopkins', '1990-10-01', '6-2', 205, 'Florida State', 7, 29, 'CLE'),
+(467, 'Corey', 'Bojorquez', '1996-09-13', '6-0', 208, 'New Mexico', 13, 30, 'CLE'),
+(468, 'Charley', 'Hughlett', '1990-05-16', '6-4', 248, 'UCF', 47, 31, 'CLE'),
+(469, 'Nyheim', 'Hines Jr', '1996-11-12', '5-9', 198, 'NC State', 0, 32, 'CLE'),
+(470, 'Jakeem', 'Grant', '1992-10-30', '5-7', 171, 'Texas Tech', 19, 32, 'CLE'),
+(471, 'Demetric', 'Felton Jr', '1998-07-16', '5-9', 189, 'UCLA', 25, 32, 'CLE'),
+(472, 'Isaiah', 'Thomas', '1998-11-03', '6-5', 266, 'Oklahoma', 58, 17, 'CLE'),
+(473, 'Jayden', 'Daniels', '2000-12-18', '6-4', 210, 'LSU', 5, 1, 'WAS'),
+(474, 'Jacory', 'Croskey-Merritt', '2001-04-12', '5-11', 208, 'Arizona', 32, 2, 'WAS'),
+(475, 'Terry', 'McLaurin', '1995-09-15', '6-0', 210, 'Ohio State', 17, 4, 'WAS'),
+(476, 'Deebo', 'Samuel', '1996-01-15', '6-0', 215, 'South Carolina', 1, 4, 'WAS'),
+(477, 'Zach', 'Ertz', '1990-11-10', '6-5', 250, 'Stanford', 86, 5, 'WAS'),
+(478, 'Laremy', 'Tunsil', '1994-08-02', '6-5', 313, 'Ole Miss', 78, 6, 'WAS'),
+(479, 'Josh', 'Conerly Jr', '2003-02-06', '6-4', 315, 'Oregon', 72, 6, 'WAS'),
+(480, 'Sam', 'Cosmi', '1999-10-07', '6-6', 309, 'Texas', 76, 12, 'WAS'),
+(481, 'Tyler', 'Biadasz', '1997-09-14', '6-4', 303, 'Wisconsin', 60, 8, 'WAS'),
+(482, 'Frankie', 'Luvu', '1996-04-24', '6-2', 235, 'Washington State', 4, 22, 'WAS'),
+(483, 'Bobby', 'Wagner', '1990-06-27', '6-0', 241, 'Utah State', 54, 19, 'WAS'),
+(484, 'Daron', 'Payne', '1997-05-29', '6-2', 320, 'Alabama', 94, 18, 'WAS'),
+(485, 'Jer\'Zhan', 'Newton', '2002-09-22', '6-2', 292, 'Illinois', 95, 18, 'WAS'),
+(486, 'Javon', 'Kinlaw', '1997-02-28', '6-5', 315, 'South Carolina', 52, 18, 'WAS'),
+(487, 'Dorance', 'Armstrong', '1997-06-02', '6-4', 240, 'Kansas', 92, 17, 'WAS'),
+(488, 'Mike', 'Sainristil', '2000-11-03', '5-11', 185, 'Michigan', 0, 20, 'WAS'),
+(489, 'Marshon', 'Lattimore', '1996-11-16', '6-0', 192, 'Ohio State', 2, 20, 'WAS'),
+(490, 'Quan', 'Martin', '2001-02-14', '6-0', 195, 'Connecticut', 26, 21, 'WAS'),
+(491, 'Trey', 'Amos', '2003-04-20', '6-1', 195, 'Ole Miss', 23, 20, 'WAS'),
+(492, 'Austin', 'Ekeler', '1995-05-17', '5-10', 200, 'Western Colorado', 30, 2, 'WAS'),
+(493, 'Jalen', 'Hurts', '1998-08-07', '6-1', 223, 'Oklahoma', 1, 1, 'PHI'),
+(494, 'Saquon', 'Barkley', '1997-02-09', '5-11', 232, 'Penn State', 26, 2, 'PHI'),
+(495, 'A.J.', 'Brown', '1997-06-30', '6-1', 226, 'Ole Miss', 11, 4, 'PHI'),
+(496, 'DeVonta', 'Smith', '1998-11-14', '6-0', 170, 'Alabama', 6, 4, 'PHI'),
+(497, 'Dallas', 'Goedert', '1995-01-03', '6-5', 256, 'South Dakota State', 88, 5, 'PHI'),
+(498, 'Jordan', 'Mailata', '1997-03-31', '6-8', 346, 'South Sydney Rabbitohs', 68, 6, 'PHI'),
+(499, 'Landon', 'Dickerson', '1998-09-19', '6-6', 333, 'Alabama', 69, 7, 'PHI'),
+(500, 'Cam', 'Jurgens', '1999-05-11', '6-3', 303, 'Nebraska', 61, 8, 'PHI'),
+(501, 'Lane', 'Johnson', '1990-05-08', '6-6', 317, 'Oklahoma', 65, 10, 'PHI'),
+(502, 'Tyler', 'Steen', '2000-01-27', '6-6', 321, 'Alabama', 78, 12, 'PHI'),
+(503, 'Jalen', 'Carter', '2002-01-07', '6-3', 314, 'Georgia', 98, 18, 'PHI'),
+(504, 'Jordan', 'Davis', '2000-07-26', '6-6', 341, 'Georgia', 90, 18, 'PHI'),
+(505, 'Zack', 'Baun', '1997-03-24', '6-2', 238, 'Wisconsin', 53, 19, 'PHI'),
+(506, 'Nakobe', 'Dean', '2001-09-10', '6-0', 229, 'Georgia', 17, 19, 'PHI'),
+(507, 'Jihaad', 'Campbell', '2003-06-01', '6-3', 240, 'Alabama', 0, 19, 'PHI'),
+(508, 'Quinyon', 'Mitchell', '2002-12-30', '6-0', 190, 'Toledo', 27, 20, 'PHI'),
+(509, 'Cooper', 'DeJean', '2002-10-14', '6-1', 213, 'Iowa', 33, 20, 'PHI'),
+(510, 'Reed', 'Blankenship', '1999-12-29', '6-0', 196, 'West Georgia', 32, 21, 'PHI'),
+(511, 'Jaelan', 'Phillips', '1999-08-22', '6-5', 258, 'Miami', 9, 17, 'PHI'),
+(512, 'Brandon', 'Graham', '1988-04-03', '6-2', 265, 'Michigan', 55, 17, 'PHI'),
+(513, 'Jaxson', 'Dart', '2003-05-13', '6-2', 223, 'Ole Miss', 6, 1, 'NYG'),
+(514, 'Tyrone', 'Tracy Jr', '2002-03-30', '5-11', 208, 'Purdue', 29, 2, 'NYG'),
+(515, 'Cam', 'Skattebo', '2002-08-17', '5-11', 216, 'Arizona State', 34, 2, 'NYG'),
+(516, 'Malik', 'Nabers', '2003-10-18', '6-0', 200, 'LSU', 1, 4, 'NYG'),
+(517, 'Wan\'Dale', 'Robinson', '2001-05-06', '5-8', 185, 'Kentucky', 17, 4, 'NYG'),
+(518, 'Darius', 'Slayton', '1997-01-12', '6-1', 190, 'Auburn', 18, 4, 'NYG'),
+(519, 'Theo', 'Johnson', '2001-04-03', '6-6', 260, 'Penn State', 86, 5, 'NYG'),
+(520, 'Andrew', 'Thomas', '1999-12-10', '6-5', 315, 'Georgia', 78, 6, 'NYG'),
+(521, 'Jermaine', 'Eluemunor', '1994-12-25', '6-4', 335, 'Texas A&M', 72, 6, 'NYG'),
+(522, 'John Michael', 'Schmitz', '1999-09-27', '6-4', 306, 'Minnesota', 61, 8, 'NYG'),
+(523, 'Evan', 'Neal', '2001-02-22', '6-7', 360, 'Alabama', 73, 7, 'NYG'),
+(524, 'Dexter', 'Lawrence', '1998-11-12', '6-4', 340, 'Clemson', 97, 18, 'NYG'),
+(525, 'Brian', 'Burns', '1998-03-28', '6-5', 245, 'Florida State', 0, 17, 'NYG'),
+(526, 'Kayvon', 'Thibodeaux', '2001-12-15', '6-5', 258, 'Oregon', 5, 17, 'NYG'),
+(527, 'Abdul', 'Carter', '2004-02-05', '6-3', 248, 'Penn State', 51, 17, 'NYG'),
+(528, 'Bobby', 'Okereke', '1997-01-26', '6-2', 232, 'Stanford', 58, 19, 'NYG'),
+(529, 'Micah', 'McFadden', '1999-09-21', '6-2', 232, 'Indiana', 41, 19, 'NYG'),
+(530, 'Deonte', 'Banks', '2001-05-11', '6-0', 196, 'Maryland', 3, 20, 'NYG'),
+(531, 'Tyler', 'Nubin', '2001-09-17', '6-2', 207, 'Minnesota', 34, 21, 'NYG'),
+(532, 'Dru', 'Phillips', '2001-11-14', '6-1', 193, 'Penn State', 22, 20, 'NYG'),
+(533, 'Dak', 'Prescott', '1993-07-29', '6-2', 238, 'Mississippi State', 4, 1, 'DAL'),
+(534, 'Javonte', 'Williams', '2000-04-27', '5-10', 212, 'North Carolina', 29, 2, 'DAL'),
+(535, 'CeeDee', 'Lamb', '1999-04-08', '6-2', 200, 'Oklahoma', 88, 4, 'DAL'),
+(536, 'George', 'Pickens', '2001-03-04', '6-3', 200, 'Georgia', 14, 4, 'DAL'),
+(537, 'KaVontae', 'Turpin', '1996-05-04', '5-8', 151, 'TCU', 9, 4, 'DAL'),
+(538, 'Jake', 'Ferguson', '2000-06-17', '6-5', 250, 'Wisconsin', 87, 5, 'DAL'),
+(539, 'Tyler', 'Guyton', '2002-04-04', '6-7', 315, 'Oklahoma', 60, 6, 'DAL'),
+(540, 'Terence', 'Steele', '1997-07-31', '6-6', 310, 'Texas Tech', 78, 10, 'DAL'),
+(541, 'Tyler', 'Smith', '2002-02-14', '6-5', 330, 'Tulsa', 73, 7, 'DAL'),
+(542, 'Tyler', 'Booker', '2003-09-15', '6-5', 325, 'Alabama', 56, 12, 'DAL'),
+(543, 'Brock', 'Hoffman', '1999-06-07', '6-3', 302, 'NC State', 67, 8, 'DAL'),
+(544, 'Osa', 'Odighizuwa', '1998-06-22', '6-2', 280, 'UCLA', 97, 18, 'DAL'),
+(545, 'Quinnen', 'Williams', '1997-12-09', '6-3', 303, 'Alabama', 95, 18, 'DAL'),
+(546, 'Kenny', 'Clark', '1995-10-19', '6-3', 314, 'UCLA', 98, 18, 'DAL'),
+(547, 'Dante', 'Fowler Jr', '1994-08-16', '6-3', 255, 'Florida', 58, 17, 'DAL'),
+(548, 'Donovan', 'Ezeiruaku', '2001-11-22', '6-2', 240, 'Boston College', 92, 17, 'DAL'),
+(549, 'Malik', 'Hooker', '1996-03-08', '6-2', 210, 'Ohio State', 28, 21, 'DAL'),
+(550, 'DaRon', 'Bland', '1999-07-01', '6-0', 191, 'Fresno State', 26, 20, 'DAL'),
+(551, 'Trevon', 'Diggs', '1998-09-20', '6-1', 205, 'Alabama', 7, 20, 'DAL'),
+(552, 'Brandon', 'Aubrey', '1997-01-11', '6-2', 183, 'Notre Dame', 17, 29, 'DAL'),
+(553, 'Caleb', 'Williams', '2001-11-18', '6-1', 214, 'USC', 18, 1, 'CHI'),
+(554, 'D\'Andre', 'Swift', '2000-01-14', '5-8', 212, 'Georgia', 4, 2, 'CHI'),
+(555, 'DJ', 'Moore', '1997-04-14', '6-0', 210, 'Maryland', 2, 4, 'CHI'),
+(556, 'Rome', 'Odunze', '2002-03-03', '6-2', 215, 'Washington', 15, 4, 'CHI'),
+(557, 'Luther', 'Burden III', '2004-03-12', '5-11', 200, 'Missouri', 3, 4, 'CHI'),
+(558, 'Cole', 'Kmet', '1999-02-15', '6-6', 260, 'Notre Dame', 85, 5, 'CHI'),
+(559, 'Colston', 'Loveland', '2003-10-28', '6-5', 248, 'Michigan', 16, 5, 'CHI'),
+(560, 'Darnell', 'Wright', '2001-03-05', '6-5', 333, 'Tennessee', 58, 10, 'CHI'),
+(561, 'Jonah', 'Jackson', '1997-06-26', '6-4', 305, 'Ohio State', 77, 7, 'CHI'),
+(562, 'Joe', 'Thuney', '1993-11-10', '6-5', 308, 'NC State', 62, 7, 'CHI'),
+(563, 'Drew', 'Dalman', '1999-07-29', '6-3', 295, 'Stanford', 52, 8, 'CHI'),
+(564, 'Braxton', 'Jones', '1999-11-15', '6-5', 310, 'Southern Utah', 73, 6, 'CHI'),
+(565, 'Montez', 'Sweat', '1997-06-12', '6-6', 260, 'Mississippi State', 90, 17, 'CHI'),
+(566, 'Grady', 'Jarrett', '1993-12-13', '6-0', 305, 'Clemson', 50, 18, 'CHI'),
+(567, 'TJ', 'Edwards', '1997-02-08', '6-2', 242, 'Wisconsin', 53, 19, 'CHI'),
+(568, 'Tremaine', 'Edmunds', '1998-11-27', '6-5', 250, 'Virginia Tech', 49, 19, 'CHI'),
+(569, 'Kevin', 'Byard', '1993-10-21', '5-11', 212, 'Middle Tennessee', 31, 21, 'CHI'),
+(570, 'Jaquan', 'Brisker', '1999-10-12', '6-1', 199, 'Penn State', 1, 21, 'CHI'),
+(571, 'Nahshon', 'Wright', '1999-05-08', '6-4', 185, 'Oregon State', 25, 20, 'CHI'),
+(572, 'Tyrique', 'Stevenson', '2001-10-11', '6-1', 204, 'Miami', 29, 20, 'CHI'),
+(573, 'Jared', 'Goff', '1994-10-14', '6-4', 217, 'California', 16, 1, 'DET'),
+(574, 'Jahmyr', 'Gibbs', '2002-09-20', '5-11', 200, 'Alabama', 26, 2, 'DET'),
+(575, 'David', 'Montgomery', '1997-06-07', '5-10', 224, 'Iowa State', 5, 2, 'DET'),
+(576, 'Amon-Ra', 'St. Brown', '2000-10-27', '6-0', 197, 'USC', 14, 4, 'DET'),
+(577, 'Jameson', 'Williams', '2001-03-26', '6-2', 184, 'Alabama', 9, 4, 'DET'),
+(578, 'Sam', 'LaPorta', '2001-05-29', '6-4', 245, 'Iowa', 87, 5, 'DET'),
+(579, 'Penei', 'Sewell', '2001-09-30', '6-5', 331, 'Oregon', 58, 10, 'DET'),
+(580, 'Taylor', 'Decker', '1993-06-04', '6-7', 315, 'Ohio State', 68, 6, 'DET'),
+(581, 'Frank', 'Ragnow', '1996-03-09', '6-5', 314, 'Arkansas', 77, 8, 'DET'),
+(582, 'Tate', 'Ratledge', '2002-07-22', '6-6', 321, 'Georgia', 71, 12, 'DET'),
+(583, 'Graham', 'Glasgow', '1992-06-12', '6-5', 316, 'Michigan', 60, 7, 'DET'),
+(584, 'Aidan', 'Hutchinson', '2000-05-16', '6-6', 268, 'Michigan', 97, 17, 'DET'),
+(585, 'Alim', 'McNeill', '2001-01-05', '6-2', 317, 'NC State', 54, 18, 'DET'),
+(586, 'Jack', 'Campbell', '2001-10-30', '6-5', 249, 'Iowa', 46, 19, 'DET'),
+(587, 'Alex', 'Anzalone', '1994-07-26', '6-3', 239, 'Florida', 34, 19, 'DET'),
+(588, 'Kerby', 'Joseph', '2000-05-28', '6-1', 205, 'Illinois', 31, 21, 'DET'),
+(589, 'Brian', 'Branch', '2002-05-13', '5-11', 190, 'Alabama', 32, 21, 'DET'),
+(590, 'Terrion', 'Arnold', '2003-01-19', '6-0', 202, 'Alabama', 0, 20, 'DET'),
+(591, 'DJ', 'Reed', '1997-10-04', '5-9', 188, 'Kansas State', 2, 20, 'DET'),
+(592, 'Jake', 'Bates', '1998-11-10', '6-0', 195, 'Michigan Tech', 43, 29, 'DET'),
+(593, 'Jordan', 'Love', '1998-11-02', '6-4', 224, 'Utah State', 10, 1, 'GB'),
+(594, 'Josh', 'Jacobs', '1998-08-11', '5-10', 220, 'Alabama', 8, 2, 'GB'),
+(595, 'Romeo', 'Doubs', '2000-03-18', '6-2', 200, 'Nevada', 87, 4, 'GB'),
+(596, 'Christian', 'Watson', '2000-02-18', '6-4', 208, 'North Dakota State', 9, 4, 'GB'),
+(597, 'Jayden', 'Reed', '2001-02-14', '5-11', 186, 'Michigan State', 11, 4, 'GB'),
+(598, 'Matthew', 'Golden', '2003-06-18', '6-0', 185, 'Texas', 22, 4, 'GB'),
+(599, 'Tucker', 'Kraft', '2001-02-04', '6-5', 256, 'South Dakota State', 85, 5, 'GB'),
+(600, 'Zach', 'Tom', '2000-06-16', '6-5', 315, 'Wake Forest', 50, 10, 'GB'),
+(601, 'Elgton', 'Jenkins', '1997-01-10', '6-5', 321, 'Mississippi State', 74, 8, 'GB'),
+(602, 'Aaron', 'Banks', '1998-09-19', '6-5', 335, 'Notre Dame', 65, 7, 'GB'),
+(603, 'Rasheed', 'Walker', '2000-12-01', '6-6', 310, 'Penn State', 73, 6, 'GB'),
+(604, 'Micah', 'Parsons', '1999-05-26', '6-3', 245, 'Penn State', 1, 17, 'GB'),
+(605, 'Rashan', 'Gary', '1998-02-28', '6-5', 272, 'Michigan', 52, 17, 'GB'),
+(606, 'Lukas', 'Van Ness', '2002-05-22', '6-5', 272, 'Iowa', 91, 17, 'GB'),
+(607, 'Devonte', 'Wyatt', '1999-07-24', '6-3', 304, 'Georgia', 95, 18, 'GB'),
+(608, 'Quay', 'Walker', '2000-06-04', '6-4', 241, 'Georgia', 7, 19, 'GB'),
+(609, 'Isaiah', 'McDuffie', '1999-05-07', '6-1', 232, 'Boston College', 56, 19, 'GB'),
+(610, 'Xavier', 'McKinney', '2000-08-09', '6-0', 200, 'Alabama', 29, 21, 'GB'),
+(611, 'Nate', 'Hobbs', '1999-08-12', '5-10', 195, 'Illinois', 21, 20, 'GB'),
+(612, 'Keisean', 'Nixon', '1998-07-15', '5-10', 190, 'South Carolina', 25, 20, 'GB'),
+(613, 'J.J.', 'McCarthy', '2003-03-18', '6-2', 218, 'Michigan', 9, 1, 'MIN'),
+(614, 'Aaron', 'Jones', '1994-12-02', '5-9', 208, 'UTEP', 33, 2, 'MIN'),
+(615, 'Jordan', 'Mason', '2000-01-07', '5-11', 220, 'Georgia Tech', 25, 2, 'MIN'),
+(616, 'Justin', 'Jefferson', '1999-06-16', '6-1', 195, 'LSU', 18, 4, 'MIN'),
+(617, 'Jordan', 'Addison', '2002-01-26', '6-0', 173, 'USC', 3, 4, 'MIN'),
+(618, 'T.J.', 'Hockenson', '1997-07-03', '6-5', 248, 'Iowa', 87, 5, 'MIN'),
+(619, 'Brian', 'O\'Neill', '1996-05-25', '6-7', 315, 'Pittsburgh', 75, 10, 'MIN'),
+(620, 'Christian', 'Darrisaw', '2000-06-30', '6-5', 322, 'Virginia Tech', 71, 6, 'MIN'),
+(621, 'Donovan', 'Jackson', '2003-04-14', '6-4', 320, 'Ohio State', 77, 12, 'MIN'),
+(622, 'Ryan', 'Kelly', '1993-06-15', '6-3', 311, 'Alabama', 56, 8, 'MIN'),
+(623, 'Jonathan', 'Greenard', '1998-03-07', '6-4', 264, 'Florida', 55, 17, 'MIN'),
+(624, 'Andrew', 'Van Ginkel', '1996-07-27', '6-3', 243, 'Wisconsin', 57, 22, 'MIN'),
+(625, 'Dallas', 'Turner', '2003-07-11', '6-4', 243, 'Alabama', 53, 17, 'MIN'),
+(626, 'Jonathan', 'Allen', '1995-01-16', '6-3', 300, 'Alabama', 93, 18, 'MIN'),
+(627, 'Javon', 'Hargrave', '1993-02-26', '6-2', 305, 'South Carolina State', 90, 18, 'MIN'),
+(628, 'Blake', 'Cashman', '1997-02-28', '6-2', 235, 'Minnesota', 51, 19, 'MIN'),
+(629, 'Ivan', 'Pace Jr', '2001-05-16', '6-0', 234, 'Cincinnati', 45, 19, 'MIN'),
+(630, 'Harrison', 'Smith', '1989-02-02', '6-2', 214, 'Notre Dame', 22, 21, 'MIN'),
+(631, 'Byron', 'Murphy Jr', '1999-03-26', '6-0', 190, 'Washington', 7, 20, 'MIN'),
+(632, 'Joshua', 'Metellus', '1997-09-17', '6-0', 207, 'Michigan', 44, 21, 'MIN'),
+(633, 'Tyler', 'Shough', '1999-09-28', '6-5', 219, 'Louisville', 6, 1, 'NO'),
+(634, 'Spencer', 'Rattler', '2000-09-28', '6-1', 210, 'South Carolina', 18, 1, 'NO'),
+(635, 'Alvin', 'Kamara', '1995-07-25', '5-10', 215, 'Tennessee', 41, 2, 'NO'),
+(636, 'Kendre', 'Miller', '2002-03-09', '5-11', 215, 'TCU', 25, 2, 'NO'),
+(637, 'Chris', 'Olave', '2000-03-27', '6-0', 187, 'Ohio State', 12, 4, 'NO'),
+(638, 'Rashid', 'Shaheed', '1999-11-11', '6-0', 174, 'Weber State', 89, 4, 'NO'),
+(639, 'Juwan', 'Johnson', '1997-07-26', '6-4', 242, 'Oregon', 83, 5, 'NO'),
+(640, 'Kelvin', 'Banks Jr', '2003-07-25', '6-5', 315, 'Texas', 71, 6, 'NO'),
+(641, 'Taliese', 'Fuaga', '2002-05-25', '6-6', 320, 'Oregon State', 74, 10, 'NO'),
+(642, 'Erik', 'McCoy', '1998-03-13', '6-4', 303, 'Texas A&M', 78, 8, 'NO'),
+(643, 'Cesar', 'Ruiz', '1999-12-05', '6-3', 310, 'Michigan', 51, 12, 'NO'),
+(644, 'Cameron', 'Jordan', '1989-07-10', '6-4', 287, 'California', 94, 17, 'NO'),
+(645, 'Chase', 'Young', '1999-04-14', '6-5', 264, 'Ohio State', 99, 17, 'NO'),
+(646, 'Carl', 'Granderson', '1997-03-28', '6-6', 260, 'Wyoming', 96, 17, 'NO'),
+(647, 'Davon', 'Godchaux', '1994-11-11', '6-3', 311, 'LSU', 92, 18, 'NO'),
+(648, 'Pete', 'Werner', '1999-08-04', '6-3', 236, 'Ohio State', 20, 19, 'NO'),
+(649, 'Danny', 'Stutsman', '2002-08-14', '6-3', 237, 'Oklahoma', 40, 19, 'NO'),
+(650, 'Justin', 'Reid', '1997-11-17', '6-1', 207, 'Stanford', 37, 21, 'NO'),
+(651, 'Paulson', 'Adebo', '1999-11-25', '6-1', 189, 'Stanford', 29, 20, 'NO'),
+(652, 'Kool-Aid', 'McKinstry', '2003-05-06', '6-0', 192, 'Alabama', 1, 20, 'NO'),
+(653, 'Baker', 'Mayfield', '1995-04-14', '6-1', 215, 'Oklahoma', 6, 1, 'TB'),
+(654, 'Bucky', 'Irving', '2002-12-16', '5-9', 195, 'Oregon', 7, 2, 'TB'),
+(655, 'Rachaad', 'White', '1999-06-01', '6-0', 214, 'Arizona State', 29, 2, 'TB'),
+(656, 'Mike', 'Evans', '1993-08-21', '6-5', 231, 'Texas A&M', 13, 4, 'TB'),
+(657, 'Chris', 'Godwin', '1996-02-27', '6-1', 209, 'Penn State', 14, 4, 'TB'),
+(658, 'Emeka', 'Egbuka', '2002-12-17', '6-1', 200, 'Ohio State', 2, 4, 'TB'),
+(659, 'Jalen', 'McMillan', '2002-08-14', '6-2', 196, 'Washington', 11, 4, 'TB'),
+(660, 'Cade', 'Otton', '2000-06-04', '6-5', 249, 'Washington', 87, 5, 'TB'),
+(661, 'Tristan', 'Wirfs', '1999-01-03', '6-5', 320, 'Iowa', 78, 6, 'TB'),
+(662, 'Luke', 'Goedeke', '2000-02-24', '6-5', 308, 'Central Michigan', 76, 7, 'TB'),
+(663, 'Graham', 'Barton', '2001-05-01', '6-5', 310, 'Duke', 61, 8, 'TB'),
+(664, 'Vita', 'Vea', '1996-02-04', '6-4', 347, 'Washington', 50, 18, 'TB'),
+(665, 'Yaya', 'Diaby', '2001-01-17', '6-4', 250, 'Louisville', 98, 17, 'TB'),
+(666, 'Haason', 'Reddick', '1994-09-22', '6-1', 235, 'Temple', 55, 22, 'TB'),
+(667, 'Anthony', 'Nelson', '1997-05-03', '6-7', 271, 'Iowa', 98, 17, 'TB'),
+(668, 'Lavonte', 'David', '1990-01-16', '6-1', 233, 'Nebraska', 54, 19, 'TB'),
+(669, 'SirVocea', 'Dennis', '2001-04-29', '6-2', 235, 'Pittsburgh', 47, 19, 'TB'),
+(670, 'Antoine', 'Winfield Jr', '1999-01-11', '5-11', 203, 'Minnesota', 31, 21, 'TB'),
+(671, 'Tykee', 'Smith', '2001-06-28', '5-10', 195, 'Georgia', 32, 21, 'TB'),
+(672, 'Jamel', 'Dean', '1997-04-01', '6-1', 205, 'Auburn', 35, 20, 'TB'),
+(673, 'Michael', 'Penix Jr', '2000-05-08', '6-2', 218, 'Washington', 9, 1, 'ATL'),
+(674, 'Bijan', 'Robinson', '2002-02-07', '6-0', 215, 'Texas', 7, 2, 'ATL'),
+(675, 'Tyler', 'Allgeier', '2000-05-26', '5-11', 220, 'BYU', 25, 2, 'ATL'),
+(676, 'Drake', 'London', '2001-07-24', '6-4', 213, 'USC', 5, 4, 'ATL'),
+(677, 'Darnell', 'Mooney', '1998-04-18', '5-11', 175, 'Tulane', 1, 4, 'ATL'),
+(678, 'Kyle', 'Pitts', '2001-10-06', '6-6', 246, 'Florida', 8, 5, 'ATL'),
+(679, 'Jake', 'Matthews', '1992-07-26', '6-5', 315, 'Texas A&M', 70, 6, 'ATL'),
+(680, 'Chris', 'Lindstrom', '1997-04-12', '6-4', 309, 'Boston College', 63, 12, 'ATL'),
+(681, 'Drew', 'Dalman', '1999-07-29', '6-3', 295, 'Stanford', 67, 8, 'ATL'),
+(682, 'Kaleb', 'McGary', '1996-07-06', '6-7', 310, 'Washington', 76, 10, 'ATL'),
+(683, 'Matthew', 'Judon', '1992-08-15', '6-2', 261, 'Grand Valley State', 55, 22, 'ATL'),
+(684, 'Azeez', 'Ojulari', '2001-12-08', '6-3', 249, 'Georgia', 92, 22, 'ATL'),
+(685, 'Ruke', 'Orhorhoro', '2002-01-18', '6-4', 305, 'Clemson', 96, 18, 'ATL'),
+(686, 'Jessie', 'Bates III', '1997-02-26', '6-1', 200, 'Wake Forest', 3, 21, 'ATL'),
+(687, 'DeMarcco', 'Hellams', '2001-01-31', '6-1', 205, 'Alabama', 26, 21, 'ATL'),
+(688, 'A.J.', 'Terrell Jr', '1999-03-22', '6-1', 190, 'Clemson', 24, 20, 'ATL'),
+(689, 'Clark', 'Phillips III', '2002-03-14', '5-10', 185, 'Utah', 23, 20, 'ATL'),
+(690, 'Dee', 'Alford', '1998-11-22', '5-9', 183, 'Georgia Southern', 37, 20, 'ATL'),
+(691, 'Younghoe', 'Koo', '1994-10-04', '5-11', 183, 'Georgia Southern', 4, 29, 'ATL'),
+(692, 'James', 'Pearce Jr', '2004-04-03', '6-4', 240, 'Tennessee', 51, 17, 'ATL'),
+(694, 'Chuba', 'Hubbard', '1999-10-04', '5-11', 212, 'Oklahoma State', 30, 2, 'CAR'),
+(695, 'Rico', 'Dowdle', '1999-04-10', '5-9', 195, 'South Carolina', 23, 2, 'CAR'),
+(696, 'Tetairoa', 'McMillan', '2003-05-23', '6-4', 220, 'Arizona', 4, 4, 'CAR'),
+(697, 'Jalen', 'Coker', '2001-10-30', '6-3', 213, 'Holy Cross', 18, 4, 'CAR'),
+(698, 'Xavier', 'Legette', '2002-05-28', '6-2', 215, 'South Carolina', 17, 4, 'CAR'),
+(699, 'Ja\'Tavion', 'Sanders', '2002-08-22', '6-4', 248, 'Texas', 0, 5, 'CAR'),
+(700, 'Ikem', 'Ekwonu', '2001-05-15', '6-4', 320, 'NC State', 79, 6, 'CAR'),
+(701, 'Taylor', 'Moton', '1994-12-26', '6-5', 325, 'Western Michigan', 72, 10, 'CAR'),
+(702, 'Robert', 'Hunt', '1997-07-09', '6-5', 323, 'Louisiana', 76, 12, 'CAR'),
+(703, 'Damien', 'Lewis', '1998-08-29', '6-2', 330, 'LSU', 68, 7, 'CAR'),
+(704, 'Derrick', 'Brown', '1999-05-29', '6-4', 326, 'Auburn', 95, 18, 'CAR'),
+(705, 'A\'Shawn', 'Robinson', '1995-08-21', '6-4', 330, 'Alabama', 91, 18, 'CAR'),
+(706, 'D.J.', 'Wonnum', '1998-06-23', '6-5', 260, 'South Carolina', 55, 17, 'CAR'),
+(707, 'Patrick', 'Jones II', '1998-06-28', '6-3', 254, 'Pittsburgh', 93, 17, 'CAR'),
+(708, 'Josey', 'Jewell', '1995-02-22', '6-1', 235, 'Iowa', 47, 19, 'CAR'),
+(709, 'Jaycee', 'Horn', '1999-11-27', '6-1', 205, 'South Carolina', 8, 20, 'CAR'),
+(710, 'Chau', 'Smith-Wade', '2001-06-18', '5-11', 185, 'Washington State', 26, 20, 'CAR'),
+(711, 'Tre\'von', 'Moehrig', '2000-08-12', '6-1', 202, 'TCU', 7, 21, 'CAR'),
+(712, 'Lathan', 'Ransom', '2002-05-04', '6-1', 210, 'Ohio State', 21, 21, 'CAR'),
+(713, 'Matthew', 'Stafford', '1988-02-07', '6-3', 226, 'Georgia', 9, 1, 'LAR'),
+(714, 'Kyren', 'Williams', '2001-01-25', '5-9', 198, 'Notre Dame', 23, 2, 'LAR'),
+(715, 'Blake', 'Corum', '2002-08-10', '5-8', 215, 'Michigan', 22, 2, 'LAR'),
+(716, 'Puka', 'Nacua', '2001-04-30', '6-1', 200, 'BYU', 12, 4, 'LAR'),
+(717, 'Davante', 'Adams', '1992-12-24', '6-1', 215, 'Fresno State', 17, 4, 'LAR'),
+(718, 'Tyler', 'Higbee', '1993-08-30', '6-6', 257, 'Western Kentucky', 89, 5, 'LAR'),
+(719, 'Colby', 'Parkinson', '1999-01-15', '6-7', 260, 'Stanford', 84, 5, 'LAR'),
+(720, 'Alaric', 'Jackson', '1999-03-12', '6-5', 316, 'Iowa', 75, 6, 'LAR'),
+(721, 'Steve', 'Avila', '2000-06-03', '6-4', 330, 'TCU', 76, 8, 'LAR'),
+(722, 'Kevin', 'Dotson', '1998-11-26', '6-3', 316, 'Louisiana', 69, 12, 'LAR'),
+(723, 'Rob', 'Havenstein', '1992-05-13', '6-8', 330, 'Wisconsin', 79, 10, 'LAR'),
+(724, 'Kobie', 'Turner', '2000-08-05', '6-2', 290, 'Wake Forest', 91, 18, 'LAR'),
+(725, 'Jared', 'Verse', '2001-05-18', '6-4', 254, 'Florida State', 58, 17, 'LAR'),
+(726, 'Josaiah', 'Stewart', '2003-10-13', '6-2', 246, 'Michigan', 31, 17, 'LAR'),
+(727, 'Nate', 'Landman', '1998-09-26', '6-3', 232, 'Colorado', 51, 19, 'LAR'),
+(728, 'Kam', 'Curl', '1999-04-04', '6-2', 212, 'Arkansas', 3, 21, 'LAR'),
+(729, 'Quentin', 'Lake', '1999-10-18', '6-2', 210, 'UCLA', 37, 21, 'LAR'),
+(730, 'Darious', 'Williams', '1993-07-23', '5-9', 182, 'UAB', 11, 20, 'LAR'),
+(731, 'Ahkello', 'Witherspoon', '1995-05-14', '6-3', 195, 'Colorado', 23, 20, 'LAR'),
+(732, 'Cobie', 'Durant', '2001-01-18', '6-0', 185, 'South Carolina', 15, 20, 'LAR'),
+(733, 'Brock', 'Purdy', '2000-12-27', '6-1', 220, 'Iowa State', 13, 1, 'SF'),
+(734, 'Christian', 'McCaffrey', '1996-06-07', '5-11', 206, 'Stanford', 23, 2, 'SF'),
+(735, 'Brian', 'Robinson Jr', '2000-09-21', '5-11', 220, 'Alabama', 8, 2, 'SF'),
+(736, 'Isaac', 'Guerendo', '2001-11-19', '5-11', 213, 'Wisconsin', 28, 2, 'SF'),
+(737, 'Jauan', 'Jennings', '1997-12-27', '6-3', 215, 'Tennessee', 15, 4, 'SF'),
+(738, 'Ricky', 'Pearsall', '2002-02-05', '6-1', 195, 'Florida', 14, 4, 'SF'),
+(739, 'George', 'Kittle', '1993-10-09', '6-4', 250, 'Iowa', 85, 5, 'SF'),
+(740, 'Kyle', 'Juszczyk', '1991-04-23', '6-1', 245, 'Harvard', 44, 3, 'SF'),
+(741, 'Trent', 'Williams', '1988-07-19', '6-5', 320, 'Oklahoma', 71, 6, 'SF'),
+(742, 'Jake', 'Brendel', '1993-05-31', '6-3', 300, 'UCLA', 53, 8, 'SF'),
+(743, 'Dominick', 'Puni', '2002-09-04', '6-5', 335, 'Kansas', 72, 12, 'SF'),
+(744, 'Colton', 'McKivitz', '1997-08-09', '6-6', 302, 'West Virginia', 75, 10, 'SF'),
+(745, 'Nick', 'Bosa', '1997-10-23', '6-4', 266, 'Ohio State', 97, 17, 'SF'),
+(746, 'Mykel', 'Williams', '2004-03-02', '6-5', 265, 'Georgia', 6, 17, 'SF'),
+(747, 'Bryce', 'Huff', '1999-09-01', '6-4', 250, 'Memphis', 51, 17, 'SF'),
+(748, 'Fred', 'Warner', '1996-11-19', '6-3', 230, 'BYU', 54, 19, 'SF'),
+(749, 'Deommodore', 'Lenoir', '1999-11-25', '5-11', 194, 'Oregon', 38, 20, 'SF'),
+(750, 'Ji\'Ayir', 'Brown', '2000-04-07', '5-11', 202, 'Penn State', 6, 21, 'SF'),
+(751, 'Malik', 'Mustapha', '2003-06-10', '6-2', 215, 'Wake Forest', 39, 21, 'SF'),
+(752, 'Brandon', 'Aiyuk', '1998-09-17', '6-0', 206, 'Arizona State', 11, 4, 'SF'),
+(753, 'Sam', 'Darnold', '1997-06-05', '6-3', 221, 'USC', 14, 1, 'SEA'),
+(754, 'Kenneth', 'Walker III', '2001-01-20', '5-9', 211, 'Michigan State', 9, 2, 'SEA'),
+(755, 'Zach', 'Charbonnet', '2001-06-30', '6-0', 224, 'UCLA', 26, 2, 'SEA'),
+(756, 'Jaxon', 'Smith-Njigba', '2002-04-29', '6-0', 196, 'Ohio State', 11, 4, 'SEA'),
+(757, 'Cooper', 'Kupp', '1993-06-15', '6-2', 208, 'Eastern Washington', 10, 4, 'SEA'),
+(758, 'Jake', 'Bobo', '2000-10-25', '6-4', 215, 'UCLA', 19, 4, 'SEA'),
+(759, 'A.J.', 'Barner', '2001-09-16', '6-4', 248, 'Michigan', 88, 5, 'SEA'),
+(760, 'Charles', 'Cross', '2001-08-25', '6-5', 308, 'Mississippi State', 67, 6, 'SEA'),
+(761, 'Abraham', 'Lucas', '1999-07-31', '6-6', 308, 'Washington State', 72, 10, 'SEA'),
+(762, 'Connor', 'Williams', '1997-03-26', '6-5', 312, 'Texas', 55, 8, 'SEA'),
+(763, 'Olu', 'Oluwatimi', '2000-08-23', '6-3', 303, 'Michigan', 60, 8, 'SEA'),
+(764, 'Derick', 'Hall', '2000-09-30', '6-3', 253, 'Auburn', 55, 17, 'SEA'),
+(765, 'Uchenna', 'Nwosu', '1997-01-08', '6-2', 245, 'USC', 10, 22, 'SEA'),
+(766, 'Leonard', 'Floyd', '1992-09-09', '6-5', 240, 'Georgia', 56, 22, 'SEA'),
+(767, 'Ernest', 'Jones IV', '2000-06-01', '6-0', 232, 'South Carolina', 53, 19, 'SEA'),
+(768, 'Devon', 'Witherspoon', '2001-10-30', '6-0', 183, 'Illinois', 21, 20, 'SEA'),
+(769, 'Tariq', 'Woolen', '1999-06-27', '6-4', 205, 'UTSA', 27, 20, 'SEA'),
+(770, 'Julian', 'Love', '1999-05-10', '6-0', 199, 'Notre Dame', 37, 21, 'SEA'),
+(771, 'Quandre', 'Diggs', '1993-01-22', '5-9', 203, 'Texas', 6, 21, 'SEA'),
+(772, 'Jason', 'Myers', '1991-07-15', '5-10', 183, 'Idaho', 5, 29, 'SEA');
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `position`
+--
+
+CREATE TABLE `position` (
+  `position_id` int(11) NOT NULL,
+  `position_name` text NOT NULL,
+  `position_group` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `position`
+--
+
+INSERT INTO `position` (`position_id`, `position_name`, `position_group`) VALUES
+(1, 'Quarterback', 'Offense'),
+(2, 'Running Back', 'Offense'),
+(3, 'Fullback', 'Offense'),
+(4, 'Wide Receiver', 'Offense'),
+(5, 'Tight End', 'Offense'),
+(6, 'Offensive Tackle', 'Offense'),
+(7, 'Offensive Guard', 'Offense'),
+(8, 'Center', 'Offense'),
+(9, 'Left Tackle', 'Offense'),
+(10, 'Right Tackle', 'Offense'),
+(11, 'Left Guard', 'Offense'),
+(12, 'Right Guard', 'Offense'),
+(13, 'Slot Receiver', 'Offense'),
+(14, 'Wide Receiver 1', 'Offense'),
+(15, 'Wide Receiver 2', 'Offense'),
+(16, 'Third Down Back', 'Offense'),
+(17, 'Defensive End', 'Defense'),
+(18, 'Defensive Tackle', 'Defense'),
+(19, 'Linebacker', 'Defense'),
+(20, 'Cornerback', 'Defense'),
+(21, 'Safety', 'Defense'),
+(22, 'Outside Linebacker', 'Defense'),
+(23, 'Inside Linebacker', 'Defense'),
+(24, 'Middle Linebacker', 'Defense'),
+(25, 'Nickel Corner', 'Defense'),
+(26, 'Free Safety', 'Defense'),
+(27, 'Strong Safety', 'Defense'),
+(28, 'Edge Rusher', 'Defense'),
+(29, 'Kicker', 'Special Teams'),
+(30, 'Punter', 'Special Teams'),
+(31, 'Long Snapper', 'Special Teams'),
+(32, 'Kick Returner', 'Special Teams'),
+(33, 'Punt Returner', 'Special Teams'),
+(34, 'Holder', 'Special Teams'),
+(35, 'Gunner', 'Special Teams'),
+(36, 'Kickoff Specialist', 'Special Teams');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `season`
+--
+
+CREATE TABLE `season` (
+  `season_id` int(11) NOT NULL,
+  `season_year` int(11) NOT NULL,
+  `start_date` text DEFAULT NULL,
+  `end_date` text DEFAULT NULL,
+  `num_weeks` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `season`
+--
+
+INSERT INTO `season` (`season_id`, `season_year`, `start_date`, `end_date`, `num_weeks`) VALUES
+(1, 2025, '2025-09-01', '2026-02-15', 18);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stadium`
+--
+
+CREATE TABLE `stadium` (
+  `stadium_id` int(11) NOT NULL,
+  `stadium_name` text NOT NULL,
+  `city` text NOT NULL,
+  `state` text NOT NULL,
+  `capacity` int(11) DEFAULT NULL,
+  `surface_type` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `stadium`
+--
+
+INSERT INTO `stadium` (`stadium_id`, `stadium_name`, `city`, `state`, `capacity`, `surface_type`) VALUES
+(1, 'Highmark Stadium', 'Orchard Park', 'NY', 71608, 'Artificial Turf'),
+(2, 'Hard Rock Stadium', 'Miami Gardens', 'FL', 65326, 'Grass'),
+(3, 'Gillette Stadium', 'Foxborough', 'MA', 65878, 'Artificial Turf'),
+(4, 'MetLife Stadium', 'East Rutherford', 'NJ', 82500, 'Artificial Turf'),
+(5, 'M&T Bank Stadium', 'Baltimore', 'MD', 71008, 'Grass'),
+(6, 'Paycor Stadium', 'Cincinnati', 'OH', 65515, 'Artificial Turf'),
+(7, 'Huntington Bank Field', 'Cleveland', 'OH', 67431, 'Grass'),
+(8, 'Acrisure Stadium', 'Pittsburgh', 'PA', 68400, 'Grass'),
+(9, 'NRG Stadium', 'Houston', 'TX', 72220, 'Artificial Turf'),
+(10, 'Lucas Oil Stadium', 'Indianapolis', 'IN', 67000, 'Artificial Turf'),
+(11, 'EverBank Stadium', 'Jacksonville', 'FL', 69132, 'Grass'),
+(12, 'Nissan Stadium', 'Nashville', 'TN', 69143, 'Grass'),
+(13, 'Empower Field at Mile High', 'Denver', 'CO', 76125, 'Grass'),
+(14, 'GEHA Field at Arrowhead Stadium', 'Kansas City', 'MO', 76416, 'Grass'),
+(15, 'Allegiant Stadium', 'Las Vegas', 'NV', 65000, 'Artificial Turf'),
+(16, 'SoFi Stadium', 'Inglewood', 'CA', 70240, 'Artificial Turf'),
+(17, 'AT&T Stadium', 'Arlington', 'TX', 80000, 'Artificial Turf'),
+(19, 'Lincoln Financial Field', 'Philadelphia', 'PA', 69596, 'Grass'),
+(20, 'FedExField', 'Landover', 'MD', 62000, 'Grass'),
+(21, 'Soldier Field', 'Chicago', 'IL', 61500, 'Grass'),
+(22, 'Ford Field', 'Detroit', 'MI', 65000, 'Artificial Turf'),
+(23, 'Lambeau Field', 'Green Bay', 'WI', 81441, 'Grass'),
+(24, 'U.S. Bank Stadium', 'Minneapolis', 'MN', 66860, 'Artificial Turf'),
+(25, 'Mercedes-Benz Stadium', 'Atlanta', 'GA', 71000, 'Artificial Turf'),
+(26, 'Bank of America Stadium', 'Charlotte', 'NC', 74867, 'Grass'),
+(27, 'Caesars Superdome', 'New Orleans', 'LA', 73208, 'Artificial Turf'),
+(28, 'Raymond James Stadium', 'Tampa', 'FL', 65890, 'Grass'),
+(29, 'State Farm Stadium', 'Glendale', 'AZ', 63400, 'Grass'),
+(31, 'Levi\'s Stadium', 'Santa Clara', 'CA', 68500, 'Grass'),
+(32, 'Lumen Field', 'Seattle', 'WA', 68740, 'Artificial Turf');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `team`
+--
+
+CREATE TABLE `team` (
+  `team_id` int(11) NOT NULL,
+  `team_name` text NOT NULL,
+  `city` text NOT NULL,
+  `abbreviation` varchar(10) NOT NULL,
+  `founded_year` int(11) DEFAULT NULL,
+  `division_id` int(11) NOT NULL,
+  `stadium_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `team`
+--
+
+INSERT INTO `team` (`team_id`, `team_name`, `city`, `abbreviation`, `founded_year`, `division_id`, `stadium_id`) VALUES
+(1, 'Bills', 'Buffalo', 'BUF', 1960, 1, 1),
+(2, 'Dolphins', 'Miami', 'MIA', 1966, 1, 2),
+(3, 'Patriots', 'New England', 'NE', 1960, 1, 3),
+(4, 'Jets', 'New York', 'NYJ', 1960, 1, 4),
+(5, 'Ravens', 'Baltimore', 'BAL', 1996, 2, 5),
+(6, 'Bengals', 'Cincinnati', 'CIN', 1968, 2, 6),
+(7, 'Browns', 'Cleveland', 'CLE', 1946, 2, 7),
+(8, 'Steelers', 'Pittsburgh', 'PIT', 1933, 2, 8),
+(9, 'Texans', 'Houston', 'HOU', 2002, 3, 9),
+(10, 'Colts', 'Indianapolis', 'IND', 1953, 3, 10),
+(11, 'Jaguars', 'Jacksonville', 'JAX', 1995, 3, 11),
+(12, 'Titans', 'Tennessee', 'TEN', 1960, 3, 12),
+(13, 'Broncos', 'Denver', 'DEN', 1960, 4, 13),
+(14, 'Chiefs', 'Kansas City', 'KC', 1960, 4, 14),
+(15, 'Raiders', 'Las Vegas', 'LV', 1960, 4, 15),
+(16, 'Chargers', 'Los Angeles', 'LAC', 1960, 4, 16),
+(17, 'Cowboys', 'Dallas', 'DAL', 1960, 5, 17),
+(18, 'Giants', 'New York', 'NYG', 1925, 5, 4),
+(19, 'Eagles', 'Philadelphia', 'PHI', 1933, 5, 19),
+(20, 'Commanders', 'Washington', 'WAS', 1932, 5, 20),
+(21, 'Bears', 'Chicago', 'CHI', 1920, 6, 21),
+(22, 'Lions', 'Detroit', 'DET', 1930, 6, 22),
+(23, 'Packers', 'Green Bay', 'GB', 1919, 6, 23),
+(24, 'Vikings', 'Minnesota', 'MIN', 1961, 6, 24),
+(25, 'Falcons', 'Atlanta', 'ATL', 1966, 7, 25),
+(26, 'Panthers', 'Carolina', 'CAR', 1995, 7, 26),
+(27, 'Saints', 'New Orleans', 'NO', 1967, 7, 27),
+(28, 'Buccaneers', 'Tampa Bay', 'TB', 1976, 7, 28),
+(29, 'Cardinals', 'Arizona', 'ARI', 1898, 8, 29),
+(30, 'Rams', 'Los Angeles', 'LAR', 1936, 8, 16),
+(31, '49ers', 'San Francisco', 'SF', 1946, 8, 31),
+(32, 'Seahawks', 'Seattle', 'SEA', 1976, 8, 32);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `conference`
+--
+ALTER TABLE `conference`
+  ADD PRIMARY KEY (`conference_id`);
+
+--
+-- Indexes for table `division`
+--
+ALTER TABLE `division`
+  ADD PRIMARY KEY (`division_id`),
+  ADD KEY `conference_id` (`conference_id`);
+
+--
+-- Indexes for table `player`
+--
+ALTER TABLE `player`
+  ADD PRIMARY KEY (`player_id`),
+  ADD KEY `position_id` (`position_id`),
+  ADD KEY `current_team_abbreviation` (`current_team_abbreviation`);
+
+--
+-- Indexes for table `position`
+--
+ALTER TABLE `position`
+  ADD PRIMARY KEY (`position_id`);
+
+--
+-- Indexes for table `season`
+--
+ALTER TABLE `season`
+  ADD PRIMARY KEY (`season_id`);
+
+--
+-- Indexes for table `stadium`
+--
+ALTER TABLE `stadium`
+  ADD PRIMARY KEY (`stadium_id`);
+
+--
+-- Indexes for table `team`
+--
+ALTER TABLE `team`
+  ADD PRIMARY KEY (`team_id`),
+  ADD UNIQUE KEY `abbreviation` (`abbreviation`),
+  ADD KEY `division_id` (`division_id`),
+  ADD KEY `stadium_id` (`stadium_id`);
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `division`
+--
+ALTER TABLE `division`
+  ADD CONSTRAINT `division_ibfk_1` FOREIGN KEY (`conference_id`) REFERENCES `conference` (`conference_id`);
+
+--
+-- Constraints for table `player`
+--
+ALTER TABLE `player`
+  ADD CONSTRAINT `player_ibfk_1` FOREIGN KEY (`position_id`) REFERENCES `position` (`position_id`),
+  ADD CONSTRAINT `player_ibfk_2` FOREIGN KEY (`current_team_abbreviation`) REFERENCES `team` (`abbreviation`);
+
+--
+-- Constraints for table `team`
+--
+ALTER TABLE `team`
+  ADD CONSTRAINT `team_ibfk_1` FOREIGN KEY (`division_id`) REFERENCES `division` (`division_id`),
+  ADD CONSTRAINT `team_ibfk_2` FOREIGN KEY (`stadium_id`) REFERENCES `stadium` (`stadium_id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
