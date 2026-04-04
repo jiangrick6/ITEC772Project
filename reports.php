@@ -115,8 +115,8 @@ function shouldRun($section) {
     </table>
 
     <!-- 2. Specific Players -->
-    <h3>2. Quarterbacks on the Cardinals</h3>
-    <p>Shows only quarterbacks on one team instead of every player.</p>
+    <h3>2. Wide Receivers on the Patriots</h3>
+    <p>Shows only wide receivers on one team instead of every player.</p>
     <form method="get" style="margin-bottom:10px;">
         <input type="hidden" name="run" value="qb">
         <input type="submit" value="Run Quarterbacks Query">
@@ -142,8 +142,8 @@ function shouldRun($section) {
                     FROM player p
                     JOIN position pos ON p.position_id = pos.position_id
                     JOIN team t ON p.current_team_abbreviation = t.abbreviation
-                    WHERE pos.position_name = 'Quarterback'
-                      AND t.team_name = 'Cardinals'
+                    WHERE pos.position_name = 'Wide Receiver'
+                      AND t.team_name = 'Patriots'
                     ORDER BY p.last_name, p.first_name
                 ");
                 while ($row = mysqli_fetch_array($result)) {
