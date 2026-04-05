@@ -20,34 +20,31 @@ if(isset($_POST['Submit'])) {
 
 	// checking empty fields
 	if(empty($first_name) || empty($last_name) || empty($date_of_birth) || empty($years_experience)) {
-
+		$errors = [];
 		if(empty($first_name)) {
-			echo "<font color='red'>First Name field is empty.</font><br/>";
+			$errors[] = "First Name is required.";
 		}
-
 		if(empty($last_name)) {
-			echo "<font color='red'>Last Name field is empty.</font><br/>";
+			$errors[] = "Last Name is required.";
 		}
-
 		if(empty($date_of_birth)) {
-			echo "<font color='red'>Date of Birth field is empty.</font><br/>";
+			$errors[] = "Date of Birth is required.";
 		}
-
 		if(empty($years_experience)) {
-			echo "<font color='red'>Years Experience field is empty.</font><br/>";
+			$errors[] = "Years Experience is required.";
 		}
-
-		//link to the previous page
-		echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
+		$error = implode(' ', $errors);
 	} else {
 		// if all the fields are filled (not empty)
 
 		//insert data to database
 		$result = mysqli_query($mysqli, "INSERT INTO coach(first_name,last_name,date_of_birth,years_experience) VALUES('$first_name','$last_name','$date_of_birth','$years_experience')");
 
-		//display success message
-		echo "<font color='green'>Data added successfully.";
-		echo "<br/><a href='coaches.php'>View Result</a>";
+		if($result) {
+			$success = "Coach added successfully. <a href='coaches.php'>View Coaches</a>";
+		} else {
+			$error = "Unable to add coach. Please try again.";
+		}
 	}
 }
 ?>
@@ -59,32 +56,51 @@ if(isset($_POST['Submit'])) {
 </head>
 
 <body>
-	<a href="index.php">Home</a> | <a href="coaches.php">View Coaches</a>
-	<br/><br/>
+    <div class="page-wrap">
+        <div class="card">
+            <div class="report-header">
+                <div>
+                    <p class="eyebrow">Coach Management</p>
+                    <h2>Add New Coach</h2>
+                </div>
+                <div class="report-actions">
+                    <a class="btn btn-secondary" href="coaches.php">Back to Coaches</a>
+                </div>
+            </div>
+        </div>
 
-	<form action="add_coach.php" method="post" name="form1">
-		<table width="25%" border="0">
-			<tr>
-				<td>First Name</td>
-				<td><input type="text" name="first_name"></td>
-			</tr>
-			<tr>
-				<td>Last Name</td>
-				<td><input type="text" name="last_name"></td>
-			</tr>
-			<tr>
-				<td>Date of Birth</td>
-				<td><input type="date" name="date_of_birth"></td>
-			</tr>
-			<tr>
-				<td>Years Experience</td>
-				<td><input type="number" name="years_experience" min="0"></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><input type="submit" name="Submit" value="Add"></td>
-			</tr>
-		</table>
-	</form>
+        <div class="card">
+            <?php if(isset($error)) { ?>
+                <div class="error"><?php echo $error; ?></div>
+            <?php } ?>
+            <?php if(isset($success)) { ?>
+                <div class="success"><?php echo $success; ?></div>
+            <?php } ?>
+            <form action="add_coach.php" method="post" name="form1">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" name="first_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" name="last_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Date of Birth</label>
+                        <input type="date" name="date_of_birth">
+                    </div>
+                    <div class="form-group">
+                        <label>Years Experience</label>
+                        <input type="number" name="years_experience" min="0">
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <input type="submit" name="Submit" value="Add Coach" class="btn btn-primary">
+                    <a href="coaches.php" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

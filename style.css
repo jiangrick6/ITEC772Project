@@ -464,6 +464,44 @@ h5 {
     flex: 1;
 }
 
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+}
+
+.action-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.auth-card {
+    background: rgba(15, 23, 42, 0.95);
+    border: 1px solid rgba(148, 163, 184, 0.24);
+    border-radius: 18px;
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.35);
+    max-width: 520px;
+    margin: 80px auto;
+    padding: 32px;
+}
+
+.auth-title {
+    margin: 0 0 18px 0;
+    color: #f8fafc;
+    font-size: 1.8rem;
+}
+
+.auth-footer {
+    margin-top: 24px;
+    text-align: center;
+    color: #cbd5e1;
+}
+
+.auth-footer a {
+    color: #93c5fd;
+}
+
 .form-group {
     margin-bottom: 20px;
 }

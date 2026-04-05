@@ -73,62 +73,54 @@ while($res = mysqli_fetch_array($result)) {
 </head>
 
 <body>
-	<a href="index.php">Home</a> | <a href="teams.php">View Teams</a>
-	<br/><br/>
+    <div class="page-wrap">
+        <div class="card">
+            <div class="report-header">
+                <div>
+                    <p class="eyebrow">Team Management</p>
+                    <h2>Edit Team</h2>
+                </div>
+                <div class="report-actions">
+                    <a class="btn btn-secondary" href="teams.php">Back to Teams</a>
+                </div>
+            </div>
+        </div>
 
-	<form name="form1" method="post" action="edit_team.php">
-		<table border="0">
-			<tr>
-				<td>Team Name</td>
-				<td><input type="text" name="team_name" value="<?php echo $team_name;?>"></td>
-			</tr>
-			<tr>
-				<td>City</td>
-				<td><input type="text" name="city" value="<?php echo $city;?>"></td>
-			</tr>
-			<tr>
-				<td>Abbreviation</td>
-				<td><input type="text" name="abbreviation" value="<?php echo $abbreviation;?>" maxlength="3"></td>
-			</tr>
-			<tr>
-				<td>Founded Year</td>
-				<td><input type="number" name="founded_year" value="<?php echo $founded_year;?>" min="1920" max="2030"></td>
-			</tr>
-			<tr>
-				<td>Division</td>
-				<td>
-					<select name="division_id">
-						<option value="">Select Division</option>
-						<?php
-						mysqli_data_seek($divisions, 0); // Reset pointer
-						while($division = mysqli_fetch_array($divisions)) {
-							$selected = ($division['division_id'] == $division_id) ? 'selected' : '';
-							echo "<option value='{$division['division_id']}' $selected>{$division['division_name']}</option>";
-						}
-						?>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td>Stadium</td>
-				<td>
-					<select name="stadium_id">
-						<option value="">Select Stadium</option>
-						<?php
-						mysqli_data_seek($stadiums, 0); // Reset pointer
-						while($stadium = mysqli_fetch_array($stadiums)) {
-							$selected = ($stadium['stadium_id'] == $stadium_id) ? 'selected' : '';
-							echo "<option value='{$stadium['stadium_id']}' $selected>{$stadium['stadium_name']}</option>";
-						}
-						?>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td><input type="hidden" name="id" value="<?php echo $_GET['id'];?>"></td>
-				<td><input type="submit" name="update" value="Update"></td>
-			</tr>
-		</table>
-	</form>
+        <div class="card">
+            <form name="form1" method="post" action="edit_team.php">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Team Name</label>
+                        <input type="text" name="team_name" value="<?php echo $team_name;?>">
+                    </div>
+                    <div class="form-group">
+                        <label>City</label>
+                        <input type="text" name="city" value="<?php echo $city;?>">
+                    </div>
+                    <div class="form-group">
+                        <label>Abbreviation</label>
+                        <input type="text" name="abbreviation" value="<?php echo $abbreviation;?>" maxlength="3">
+                    </div>
+                    <div class="form-group">
+                        <label>Founded Year</label>
+                        <input type="number" name="founded_year" value="<?php echo $founded_year;?>" min="1920" max="2030">
+                    </div>
+                    <div class="form-group">
+                        <label>Division</label>
+                        <input type="text" name="division_id" value="<?php echo $division_id;?>" placeholder="Type division name or ID">
+                    </div>
+                    <div class="form-group">
+                        <label>Stadium</label>
+                        <input type="text" name="stadium_id" value="<?php echo $stadium_id;?>" placeholder="Type stadium name or ID">
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <input type="hidden" name="id" value="<?php echo $_GET['id'];?>">
+                    <input type="submit" name="update" value="Update" class="btn btn-primary">
+                    <a href="teams.php" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

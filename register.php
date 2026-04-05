@@ -52,45 +52,44 @@ if(isset($_POST['register'])) {
 </head>
 
 <body>
-    <div style="max-width: 400px; margin: 50px auto; padding: 20px; border: 1px solid #ddd; border-radius: 5px;">
-        <h2>Register for NFL Database</h2>
+    <div class="page-wrap">
+        <div class="auth-card">
+            <h2 class="auth-title">Register for NFL Database</h2>
 
-        <?php if(isset($error)) { ?>
-            <div style="color: red; margin-bottom: 15px;"><?php echo $error; ?></div>
-        <?php } ?>
+            <?php if(isset($error)) { ?>
+                <div class="error"><?php echo $error; ?></div>
+            <?php } ?>
 
-        <?php if(isset($success)) { ?>
-            <div style="color: green; margin-bottom: 15px;"><?php echo $success; ?></div>
-        <?php } ?>
+            <?php if(isset($success)) { ?>
+                <div class="success"><?php echo $success; ?></div>
+            <?php } ?>
 
-        <form action="register.php" method="post" name="registerForm">
-            <table width="100%" border="0">
-                <tr>
-                    <td>Username</td>
-                    <td><input type="text" name="username" required></td>
-                </tr>
-                <tr>
-                    <td>Email</td>
-                    <td><input type="email" name="email" required></td>
-                </tr>
-                <tr>
-                    <td>Password</td>
-                    <td><input type="password" name="password" required></td>
-                </tr>
-                <tr>
-                    <td>Confirm Password</td>
-                    <td><input type="password" name="confirm_password" required></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><input type="submit" name="register" value="Register"></td>
-                </tr>
-            </table>
-        </form>
+            <form action="register.php" method="post" name="registerForm" class="auth-form">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    <input type="password" name="confirm_password" required>
+                </div>
+                <div class="form-actions">
+                    <input type="submit" name="register" value="Register" class="btn btn-primary">
+                </div>
+            </form>
 
-        <p style="text-align: center; margin-top: 20px;">
-            Already have an account? <a href="login.php">Login here</a>
-        </p>
+            <div class="auth-footer">
+                Already have an account? <a href="login.php">Login here</a>
+            </div>
+        </div>
     </div>
 </body>
 </html>

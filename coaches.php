@@ -24,27 +24,43 @@ $result = mysqli_query($mysqli, "SELECT *, TIMESTAMPDIFF(YEAR, date_of_birth, CU
 </head>
 
 <body>
-	<a href="index.php">Home</a> | <a href="add_coach.php">Add New Coach</a>
-	<br/><br/>
+    <div class="page-wrap">
+        <div class="card">
+            <div class="report-header">
+                <div>
+                    <p class="eyebrow">Management</p>
+                    <h2>Coaches</h2>
+                </div>
+                <div class="report-actions">
+                    <a class="btn btn-primary" href="add_coach.php">+ Add New Coach</a>
+                    <a class="btn btn-secondary" href="index.php">Back to Home</a>
+                </div>
+            </div>
+        </div>
 
-	<table width='100%' border=1>
-		<tr bgcolor='#CCCCCC'>
-			<td>Name</td>
-			<td>Date of Birth</td>
-			<td>Age</td>
-			<td>Years Experience</td>
-			<td>Actions</td>
-		</tr>
-		<?php
-		while($res = mysqli_fetch_array($result)) {
-			echo "<tr>";
-			echo "<td>".$res['first_name']." ".$res['last_name']."</td>";
-			echo "<td>".formatDate($res['date_of_birth'])."</td>";
-			echo "<td>".$res['age']."</td>";
-			echo "<td>".$res['years_experience']."</td>";
-			echo "<td><a href=\"edit_coach.php?id=$res[coach_id]\">Edit</a> | <a href=\"delete_coach.php?id=$res[coach_id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";
-		}
-		?>
-	</table>
+        <div class="card">
+            <div class="table-responsive">
+                <table width='100%'>
+                    <tr>
+                        <td>Name</td>
+                        <td>Date of Birth</td>
+                        <td>Age</td>
+                        <td>Years Experience</td>
+                        <td>Actions</td>
+                    </tr>
+                    <?php
+                    while($res = mysqli_fetch_array($result)) {
+                        echo "<tr>";
+                        echo "<td>".$res['first_name']." ".$res['last_name']."</td>";
+                        echo "<td>".formatDate($res['date_of_birth'])."</td>";
+                        echo "<td>".$res['age']."</td>";
+                        echo "<td>".$res['years_experience']."</td>";
+                        echo "<td><div class='action-buttons'><a class=\"btn btn-primary\" href=\"edit_coach.php?id=$res[coach_id]\">Edit</a><a class=\"btn btn-danger\" href=\"delete_coach.php?id=$res[coach_id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></div></td>";
+                    }
+                    ?>
+                </table>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

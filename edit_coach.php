@@ -70,32 +70,46 @@ while($res = mysqli_fetch_array($result))
 </head>
 
 <body>
-	<a href="index.php">Home</a> | <a href="coaches.php">View Coaches</a>
-	<br/><br/>
+    <div class="page-wrap">
+        <div class="card">
+            <div class="report-header">
+                <div>
+                    <p class="eyebrow">Coach Management</p>
+                    <h2>Edit Coach</h2>
+                </div>
+                <div class="report-actions">
+                    <a class="btn btn-secondary" href="coaches.php">Back to Coaches</a>
+                </div>
+            </div>
+        </div>
 
-	<form name="form1" method="post" action="edit_coach.php">
-		<table border="0">
-			<tr>
-				<td>First Name</td>
-				<td><input type="text" name="first_name" value="<?php echo $first_name;?>"></td>
-			</tr>
-			<tr>
-				<td>Last Name</td>
-				<td><input type="text" name="last_name" value="<?php echo $last_name;?>"></td>
-			</tr>
-			<tr>
-				<td>Date of Birth</td>
-				<td><input type="date" name="date_of_birth" value="<?php echo $date_of_birth;?>"></td>
-			</tr>
-			<tr>
-				<td>Years Experience</td>
-				<td><input type="number" name="years_experience" value="<?php echo $years_experience;?>" min="0"></td>
-			</tr>
-			<tr>
-				<td><input type="hidden" name="id" value=<?php echo $_GET['id'];?>></td>
-				<td><input type="submit" name="update" value="Update"></td>
-			</tr>
-		</table>
-	</form>
+        <div class="card">
+            <form name="form1" method="post" action="edit_coach.php">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" name="first_name" value="<?php echo $first_name;?>">
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" name="last_name" value="<?php echo $last_name;?>">
+                    </div>
+                    <div class="form-group">
+                        <label>Date of Birth</label>
+                        <input type="date" name="date_of_birth" value="<?php echo $date_of_birth;?>">
+                    </div>
+                    <div class="form-group">
+                        <label>Years Experience</label>
+                        <input type="number" name="years_experience" value="<?php echo $years_experience;?>" min="0">
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <input type="hidden" name="id" value="<?php echo $_GET['id'];?>">
+                    <input type="submit" name="update" value="Update" class="btn btn-primary">
+                    <a href="coaches.php" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

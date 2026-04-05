@@ -26,28 +26,30 @@ if(isset($_POST['Submit'])) {
 
 	// checking empty fields
 	if(empty($team_name) || empty($city) || empty($abbreviation) || empty($founded_year)) {
+		$errors = [];
 		if(empty($team_name)) {
-			echo "<font color='red'>Team name field is empty.</font><br/>";
+			$errors[] = "Team name is required.";
 		}
 		if(empty($city)) {
-			echo "<font color='red'>City field is empty.</font><br/>";
+			$errors[] = "City is required.";
 		}
 		if(empty($abbreviation)) {
-			echo "<font color='red'>Abbreviation field is empty.</font><br/>";
+			$errors[] = "Abbreviation is required.";
 		}
 		if(empty($founded_year)) {
-			echo "<font color='red'>Founded year field is empty.</font><br/>";
+			$errors[] = "Founded year is required.";
 		}
-		//link to the previous page
-		echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
+		$error = implode(' ', $errors);
 	} else {
 		// if all the fields are filled (not empty)
 		//insert data to database
 		$result = mysqli_query($mysqli, "INSERT INTO team(team_name, city, abbreviation, founded_year, division_id, stadium_id) VALUES('$team_name', '$city', '$abbreviation', '$founded_year', '$division_id', '$stadium_id')");
 
-		//display success message
-		echo "<font color='green'>Data added successfully.";
-		echo "<br/><a href='teams.php'>View Result</a>";
+		if($result) {
+			$success = "Team added successfully. <a href='teams.php'>View Teams</a>";
+		} else {
+			$error = "Unable to add team. Please try again.";
+		}
 	}
 }
 ?>
@@ -59,54 +61,59 @@ if(isset($_POST['Submit'])) {
 </head>
 
 <body>
-	<a href="index.php">Home</a> | <a href="teams.php">View Teams</a>
-	<br/><br/>
+    <div class="page-wrap">
+        <div class="card">
+            <div class="report-header">
+                <div>
+                    <p class="eyebrow">Team Management</p>
+                    <h2>Add New Team</h2>
+                </div>
+                <div class="report-actions">
+                    <a class="btn btn-secondary" href="teams.php">Back to Teams</a>
+                </div>
+            </div>
+        </div>
 
-	<form action="add_team.php" method="post" name="form1">
-		<table width="25%" border="0">
-			<tr>
-				<td>Team Name</td>
-				<td><input type="text" name="team_name"></td>
-			</tr>
-			<tr>
-				<td>City</td>
-				<td><input type="text" name="city"></td>
-			</tr>
-			<tr>
-				<td>Abbreviation</td>
-				<td><input type="text" name="abbreviation" maxlength="3"></td>
-			</tr>
-			<tr>
-				<td>Founded Year</td>
-				<td><input type="number" name="founded_year" min="1920" max="2030"></td>
-			</tr>
-			<tr>
-				<td>Division</td>
-				<td>
-					<select name="division_id">
-						<option value="">Select Division</option>
-						<?php while($division = mysqli_fetch_array($divisions)) { ?>
-							<option value="<?php echo $division['division_id']; ?>"><?php echo $division['division_name']; ?></option>
-						<?php } ?>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td>Stadium</td>
-				<td>
-					<select name="stadium_id">
-						<option value="">Select Stadium</option>
-						<?php while($stadium = mysqli_fetch_array($stadiums)) { ?>
-							<option value="<?php echo $stadium['stadium_id']; ?>"><?php echo $stadium['stadium_name']; ?></option>
-						<?php } ?>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><input type="submit" name="Submit" value="Add"></td>
-			</tr>
-		</table>
-	</form>
+        <div class="card">
+            <?php if(isset($error)) { ?>
+                <div class="error"><?php echo $error; ?></div>
+            <?php } ?>
+            <?php if(isset($success)) { ?>
+                <div class="success"><?php echo $success; ?></div>
+            <?php } ?>
+            <form action="add_team.php" method="post" name="form1">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Team Name</label>
+                        <input type="text" name="team_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>City</label>
+                        <input type="text" name="city" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Abbreviation</label>
+                        <input type="text" name="abbreviation" maxlength="3" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Founded Year</label>
+                        <input type="number" name="founded_year" min="1920" max="2030" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Division</label>
+                        <input type="text" name="division_id" placeholder="Type division name or ID">
+                    </div>
+                    <div class="form-group">
+                        <label>Stadium</label>
+                        <input type="text" name="stadium_id" placeholder="Type stadium name or ID">
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <input type="submit" name="Submit" value="Add Team" class="btn btn-primary">
+                    <a href="teams.php" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
