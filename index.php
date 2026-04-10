@@ -59,12 +59,6 @@ $coachesCount = getCount($mysqli, 'coach');
                     A central place to manage your NFL data with quick access to teams, players, coaches, and reports.
                 </p>
             </div>
-
-            <div class="hero-actions">
-                <a class="btn btn-primary" href="teams.php">Open Teams</a>
-                <a class="btn btn-primary" href="players.php">Open Players</a>
-                <a class="btn btn-primary" href="coaches.php">Open Coaches</a>
-            </div>
         </div>
 
         <div class="stats-grid">
@@ -118,6 +112,18 @@ $coachesCount = getCount($mysqli, 'coach');
                     <strong>Run Reports</strong>
                     <span>Open the reports page to view database summaries and queries.</span>
                 </a>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>CRUD Shortcuts</h2>
+            <div class="report-actions">
+                <a class="btn btn-primary" href="teams.php">View Teams</a>
+                <a class="btn btn-secondary" href="add_team.php">Add Team</a>
+                <a class="btn btn-primary" href="players.php">View Players</a>
+                <a class="btn btn-secondary" href="add_player.php">Add Player</a>
+                <a class="btn btn-primary" href="coaches.php">View Coaches</a>
+                <a class="btn btn-secondary" href="add_coach.php">Add Coach</a>
             </div>
         </div>
 
