@@ -128,7 +128,7 @@ $coachesCount = getCount($mysqli, 'coach');
         </div>
 
         <div class="mini-footer">
-            Built for your NFL database project
+             NFL database project
         </div>
     </div>
 </body>
